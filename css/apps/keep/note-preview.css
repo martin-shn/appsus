@@ -1,0 +1,37 @@
+.note{
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 100%;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.note .note-title{
+    text-align: center;
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.note ul{
+    list-style-type: none;
+    padding-inline-start: 15px;
+}
+
+.note ul li{
+    margin-bottom: 7px;
+}
+
+.note ul li input:checked~label{
+    text-decoration:line-through;
+}
+
+.note video, .note iframe, .note audio{
+    width: 100%;
+}
+
+.note audio{
+    background-color: #333;
+}

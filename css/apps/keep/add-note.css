@@ -1,0 +1,27 @@
+.add-note-btn{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgb(106, 226, 112);
+    font-size: 2rem;
+    line-height: 3rem;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 700;
+    color: #333;
+    box-shadow: 1px 2px 5px #333;
+    
+    cursor: pointer;
+    transform: scale(1)  rotate(0deg);
+    opacity: 0.3;
+    transition: all 0.5s;
+}
+
+.add-note-btn:hover{
+    transform: scale(1.1)  rotate(10deg);
+    opacity: 0.9;
+    transition: all 0.3s;
+}

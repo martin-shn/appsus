@@ -7,6 +7,9 @@
 @import url('apps/books/GoogleSearch.css');
 @import url('apps/books/BookDetails.css');
 @import url('apps/books/ratings.css');
+@import url('apps/keep/note-list.css');
+@import url('apps/keep/add-note.css');
+@import url('apps/keep/note-preview.css');
 @import url('parts/base.css');
 @import url('parts/fonts.css');
 @import url('parts/helpers.css');
