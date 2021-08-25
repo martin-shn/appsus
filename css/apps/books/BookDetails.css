@@ -79,7 +79,7 @@
 .book-details.sale div .sale {
     height: 50px;
     background-color: #58c777;
-    width: 200px;
+    width: 120px;
     text-align: left;
     padding-left: 60px;
     font-size: 15px;
@@ -88,9 +88,9 @@
     color: #fff;
     transform: rotate(-45deg);
     position: relative;
-    top: 46px;
-    left: -70px;
-    box-shadow: inset 0px 0px 0px 4px rgba(255, 255, 255, 0.34);
+    top: 53px;
+    left: -67px;
+    box-shadow: inset 0px 0px 0px 4px rgb(255 255 255 / 34%);
     z-index: 0;
 }
 
@@ -100,11 +100,11 @@
     display: block;
     height: 100px;
     width: 110px;
-    background-color: #edf1ee;
-    top: -55px;
-    left: 128px;
+    background-color: #fff;
+    top: -56px;
+    left: 127px;
     transform: rotate(-45deg);
-    box-shadow: -115px -121px 0px 0px #edf1ee;
+    box-shadow: -115px -121px 0px 0px #fff;
 }
 
 .book-details.sale div .sale .left {
