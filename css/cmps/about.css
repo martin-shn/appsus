@@ -1,0 +1,31 @@
+.about {
+    display: flex;
+    gap: 150px;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.about div {
+    text-align: center;
+}
+
+.about div .socials a {
+    font-family: Brands;
+    font-size: 19px;
+    color: #01b5f0;
+    text-decoration: none;
+    margin-right: 5px;
+}
+.about img {
+    width: 150px;
+    border-radius: 50%;
+}
+.about .socials a:nth-of-type(1)::before {
+    content: '\f08c';
+}
+.about .socials a:nth-of-type(2)::before {
+    content: '\f082';
+}
+.about .socials a:nth-of-type(3)::before {
+    content: '\f092';
+}

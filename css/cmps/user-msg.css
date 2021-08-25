@@ -1,0 +1,43 @@
+.user-msg {
+    z-index: 100;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 11px 8px #333;
+    padding: 25px 30px;
+    text-align: center;
+}
+
+.user-msg h1{
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.user-msg button{
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.error{
+    background-color: rgb(221, 164, 164);
+    border: 1px solid rgb(161, 96, 96);
+}
+
+.success{
+    background-color: rgb(152, 228, 152);
+    border: 1px solid rgb(91, 160, 91);
+}
+
+.info{
+    background-color: rgb(124, 175, 223);
+    border: 1px solid rgb(76, 124, 170);
+}

@@ -1,0 +1,54 @@
+
+.google-search{
+    /* display: grid; */
+    grid-template-areas: 'lbl input btn'
+    '. results .';
+
+    grid-template-columns: 4rem 100px 4rem;
+    grid-template-rows: 2rem 1fr;
+
+    margin-bottom: 15px;
+}
+
+.google-search form label{
+    grid-area: lbl;
+}
+.search{
+    grid-area: input;
+    /* width: 100%; */
+}
+
+.google-search form button{
+    grid-area: btn;
+}
+
+.google-search form{
+    margin-bottom: 0;
+    display: unset;
+}
+
+.google-search p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0;
+    padding: 5px 15px;
+}
+
+.google-search p button{
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0;
+}
+
+.google-search .search-results{
+    grid-area: results;
+    margin: 0 4.5rem 20px 4rem;
+    background-color: aquamarine;
+    border: 1px solid #333;
+    width: 50vw;
+    position: absolute;
+}

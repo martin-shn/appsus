@@ -1,0 +1,48 @@
+.filter-form {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-form h4 {
+    width: 100%;
+}
+
+.filter-form input {
+    margin-right: 10px;
+    height: 2rem;
+}
+
+.filter-form input:not(:first-of-type) {
+    width: 50px;
+}
+.filter-form input:first-of-type {
+    flex-grow: 1;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+.book-preview {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    width: 100px;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.book-preview label {
+    cursor: pointer;
+}
+.book-preview label:last-of-type {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}

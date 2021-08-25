@@ -1,0 +1,9 @@
+@font-face {
+    font-family: Brands;
+    src: url(../fonts/fa-brands-400.ttf);
+}
+
+@font-face {
+    font-family: Icons;
+    src: url(../fonts/fa-solid-900.ttf);
+}

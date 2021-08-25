@@ -1,0 +1,218 @@
+.book-details {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+    width: 80vw;
+    margin: auto;
+    margin-top: 3rem;
+
+    display: grid;
+    grid-template-areas:
+        'title title pic'
+        'sub sub pic'
+        'price price pic'
+        'authors authors pic'
+        'desc desc pic'
+        'pages lang pic'
+        'categories published .'
+        'btn . .'
+        'reviews reviews reviews'
+        'btn2 btn2 btn2';
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 4rem 3rem 3rem 2rem 1fr 3rem 3rem 2rem 1fr 4rem;
+    align-items: center;
+}
+.book-details h1,
+.book-details h2,
+.book-details h3,
+.book-details h4,
+.book-details p {
+    margin: 0;
+}
+.book-details span {
+    font-weight: 400;
+}
+.book-details h1 {
+    grid-area: title;
+    text-align: center;
+    font-size: 2em;
+}
+.book-details h2 {
+    grid-area: sub;
+    text-align: center;
+    color: rgb(107, 148, 187);
+    font-size: 1.1em;
+}
+.book-details div {
+    grid-area: pic;
+    height: 100%;
+    /* overflow: hidden; */
+}
+.book-details h3 {
+    grid-area: authors;
+    text-align: center;
+}
+.book-details .lang {
+    grid-area: lang;
+}
+.book-details .categories {
+    grid-area: categories;
+}
+.book-details .price {
+    grid-area: price;
+    text-align: center;
+}
+.book-details .red span {
+    color: red;
+}
+.book-details .green span {
+    color: green;
+}
+
+.book-details.sale div {
+    /* position: absolute; */
+    /* right:0px; */
+    z-index: -1;
+}
+
+.book-details.sale div .sale {
+    height: 50px;
+    background-color: #58c777;
+    width: 200px;
+    text-align: left;
+    padding-left: 60px;
+    font-size: 15px;
+    line-height: 54px;
+    font-family: sans-serif;
+    color: #fff;
+    transform: rotate(-45deg);
+    position: relative;
+    top: 46px;
+    left: -70px;
+    box-shadow: inset 0px 0px 0px 4px rgba(255, 255, 255, 0.34);
+    z-index: 0;
+}
+
+.book-details.sale div .sale:after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 100px;
+    width: 110px;
+    background-color: #edf1ee;
+    top: -55px;
+    left: 128px;
+    transform: rotate(-45deg);
+    box-shadow: -115px -121px 0px 0px #edf1ee;
+}
+
+.book-details.sale div .sale .left {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 50px;
+    left: 25px;
+    height: 8px;
+    width: 8px;
+    background: linear-gradient(135deg, rgba(90, 146, 106, 1) 50%, rgba(90, 146, 106, 0) 50.1%);
+}
+
+.book-details.sale div .sale .right {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 50px;
+    left: 155px;
+    height: 8px;
+    width: 8px;
+    background: linear-gradient(135deg, rgba(90, 146, 106, 1) 50%, rgba(90, 146, 106, 0) 50.1%);
+    transform: rotate(90deg);
+}
+.book-details .pages {
+    grid-area: pages;
+}
+.book-details .published {
+    grid-area: published;
+}
+.book-details p {
+    grid-area: desc;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.book-details p a {
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgb(187, 187, 187);
+}
+
+.book-details p a:hover {
+    font-weight: 600;
+}
+
+.book-details p a:visited {
+    color: rgb(187, 187, 187);
+}
+
+.book-details button.back {
+    grid-area: btn2;
+    height: 2rem;
+    width: 25vw;
+    justify-self: center;
+    font-weight: 600;
+}
+
+.book-details button.prev{
+    grid-area: btn2;
+    height: 2rem;
+    width: 25vw;
+    justify-self: flex-start;
+}
+.book-details button.next{
+    grid-area: btn2;
+    height: 2rem;
+    width: 25vw;
+    justify-self: flex-end;
+}
+
+.reviews{
+    grid-area: reviews;
+}
+
+.reviews button{
+    grid-area: btn;
+}
+
+.reviews header{
+    background-color:transparent;
+}
+.reviews span{
+    font-size: 2rem;
+}
+.reviews section div header span{
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 3rem;
+}
+.reviews section div header button{
+    border: 0;
+    cursor: pointer;
+}
+.review-add{
+    grid-area: reviews;
+    /* display: flex; */
+    flex-direction: column;
+}
+
+.review-add form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap:10px;
+}
+
+.review-add .review-date{
+    width: 200px;
+}

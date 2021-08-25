@@ -1,0 +1,19 @@
+header {
+    background-color: #01b5f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+header a {
+    margin-right: 25px ;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-shadow: -1px 1px 2px #333;
+}
+
+.logo {
+    width: 100px;
+}
