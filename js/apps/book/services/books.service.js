@@ -1,4 +1,4 @@
-import { BOOKS } from '../books.json.js';
+import { BOOKS } from '../data/books.js';
 import { storageService } from '../../../services/storage.service.js';
 import { googleService } from './googleBooks-service.js';
 

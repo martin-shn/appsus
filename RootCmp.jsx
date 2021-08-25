@@ -5,7 +5,7 @@ import { About } from './js/pages/app-about.jsx';
 import { AppHeader } from './js/cmps/AppHeader.jsx';
 // import { MisterEmail } from './js/pages/MisterEmail.jsx';
 // import { MissKeep } from './js/pages/MissKeep.jsx';
-import { MissBooks } from './js/pages/MissBooks.jsx';
+import { MissBooks } from './js/apps/book/pages/MissBooks.jsx';
 import { BookDetails } from './js/apps/book/cmps/BookDetails.jsx';
 import { UserMsg } from './js/cmps/user-msg.jsx';
 

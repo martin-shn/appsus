@@ -1,8 +1,8 @@
-import { booksService } from '../apps/book/services/books.service.js';
-import { BookFilter } from '../apps/book/cmps/BookFilter.jsx';
-import { BookList } from '../apps/book/cmps/BookList.jsx';
-import { BookDetails } from '../apps/book/cmps/BookDetails.jsx';
-import { AddBook } from '../apps/book/cmps/AddBook.jsx';
+import { booksService } from '../services/books.service.js';
+import { BookFilter } from '../cmps/BookFilter.jsx';
+import { BookList } from '../cmps/BookList.jsx';
+import { BookDetails } from '../cmps/BookDetails.jsx';
+import { AddBook } from '../cmps/AddBook.jsx';
 
 export class MissBooks extends React.Component {
     state = {
