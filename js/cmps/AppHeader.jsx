@@ -14,6 +14,7 @@ class _AppHeader extends React.Component {
                     <NavLink activeClassName="my-active" exact to="/" >Home</NavLink>
                     <NavLink to="/note" >Miss Keep</NavLink>
                     <NavLink to="/book" >Miss Books</NavLink>
+                    <NavLink to="/email" >Miss Emails</NavLink>
                     <NavLink to="/about" >About</NavLink>
                 </nav>
             </React.Fragment>
