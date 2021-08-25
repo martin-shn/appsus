@@ -2,6 +2,7 @@
 @import url('cmps/header.css');
 @import url('cmps/home.css');
 @import url('cmps/user-msg.css');
+@import url('cmps/loader.css');
 @import url('apps/books/MissBooks.css');
 @import url('apps/books/GoogleSearch.css');
 @import url('apps/books/BookDetails.css');
