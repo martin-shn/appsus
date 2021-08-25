@@ -1,3 +1,20 @@
-h1 {
-    background-color: aqua;
+.app {
+    padding: unset;
+}
+
+.email-header {
+    background-color: rgb(255, 186, 0, 1);
+    display: flex;
+}
+
+.email-header :last-of-type {
+    justify-content: center;
+}
+
+.email-header .logo {
+    width: 40px;
+}
+
+.email-header .logo-txt {
+    font-size: 1.8rem;
 }

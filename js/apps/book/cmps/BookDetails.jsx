@@ -15,17 +15,14 @@ export class BookDetails extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('prevProps: ', prevProps);
         if (prevProps.match.params.bookId !== this.props.match.params.bookId) {
             this.loadBook();
         }
     }
 
     loadBook = () => {
-        console.log(this.props);
         const id = this.props.match.params.bookId;
         booksService.getBookById(id).then((book) => {
-            console.log(book);
             if (!book) this.props.history.push('/book');
             this.setState({ book });
         });

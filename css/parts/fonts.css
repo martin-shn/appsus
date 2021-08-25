@@ -7,3 +7,8 @@
     font-family: Icons;
     src: url(../fonts/fa-solid-900.ttf);
 }
+
+@font-face {
+    font-family: Roboto-Medium;
+    src:url(../fonts/Roboto-Medium.ttf)
+}
