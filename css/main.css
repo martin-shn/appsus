@@ -1,3 +1,4 @@
+@import url('parts/base.css');
 @import url('cmps/about.css');
 @import url('cmps/header.css');
 @import url('cmps/home.css');
@@ -10,6 +11,9 @@
 @import url('apps/keep/note-list.css');
 @import url('apps/keep/add-note.css');
 @import url('apps/keep/note-preview.css');
-@import url('parts/base.css');
+@import url('apps/email/email-header.css');
+@import url('apps/email/email-preview.css');
+@import url('apps/email/email-details.css');
+@import url('apps/email/add-email.css');
 @import url('parts/fonts.css');
 @import url('parts/helpers.css');

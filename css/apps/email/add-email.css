@@ -1,0 +1,45 @@
+.add-email , .add-email form{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.add-email h2 {
+    font-family: Roboto-Medium;
+    background-color: #404040;
+}
+
+.add-email-btn{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgb(255, 186, 0, 1);
+    font-size: 2rem;
+    line-height: 3rem;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 700;
+    color: #333;
+    box-shadow: 1px 2px 5px #333;
+    
+    cursor: pointer;
+    transform: scale(1)  rotate(0deg);
+    opacity: 0.3;
+    transition: all 0.5s;
+}
+
+.add-email-btn:hover{
+    transform: scale(1.1)  rotate(10deg);
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+
+.send-btn {
+    background-color: #1a73e8;
+    color: #fff;
+}

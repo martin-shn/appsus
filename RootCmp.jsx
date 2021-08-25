@@ -8,6 +8,7 @@ import { MissKeep } from './js/apps/keep/pages/note-index.jsx';
 import { MissBooks } from './js/apps/book/pages/MissBooks.jsx';
 import { BookDetails } from './js/apps/book/cmps/BookDetails.jsx';
 import { UserMsg } from './js/cmps/user-msg.jsx';
+import { EmailDetails } from './js/apps/email/cmps/email-details.jsx';
 
 export function App() {
     return (
@@ -21,7 +22,8 @@ export function App() {
             <main className='app'>
                 <Switch>
                     {/* <Route path="/book/edit/:bookId?" component={BookEdit} /> */}
-                    {/* <Route path='/book/:bookId' component={BookDetails} /> */}
+                    <Route path='/book/:bookId' component={BookDetails} />
+                    <Route path='/email/:emailId' component={EmailDetails} />
                     <Route path='/email' component={EmailApp} />
                     <Route path='/note' component={MissKeep} />
                     <Route path='/book' component={MissBooks} />

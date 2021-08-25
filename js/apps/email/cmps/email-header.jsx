@@ -10,8 +10,8 @@ export class EmailHeader extends React.Component {
         return(
             // <h1>Emails</h1>
             <div className="email-header">
-                <h1>Emails</h1>
-               <Link to='/'><img className="logo" src="../../../../css/img/mister-email/email-logo.png"/></Link> 
+               <Link className="clear-link" to='/'><img className="logo" src="../../../../css/img/mister-email/email-logo.png"/>SusMail</Link> 
+                <input type="search"></input>
             </div>
         )
     }
