@@ -22,13 +22,17 @@ export class MissKeep extends React.Component{
 
     }
 
+    onAddNote=()=>{
+        this.loadNotes();
+    }
+
     render(){
         if(!this.state.notes) return <Loader/>
         return (
             <section className="miss-keep">
                 <NoteFilter/>
                 <NoteList notes={this.state.notes} onSelectNote={this.onSelectNote}/>
-                <AddNote />
+                <AddNote onAddNote={this.onAddNote}/>
             </section>
         )
     }

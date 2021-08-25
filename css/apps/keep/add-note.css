@@ -1,8 +1,33 @@
+
+.add-note{
+    display: grid;
+    grid-template-areas: 'title close'
+    'label label'
+    'txt txt'
+    'btn .';
+
+    grid-template-columns: 100% 0%;
+    grid-template-rows: 2rem 1rem 1fr 2rem;
+
+    /* height: 50vh; */
+    width: 40vw;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    border: 1px solid rgb(224, 221, 221);
+    border-radius: 3px;
+    background-color: rgb(234, 240, 230);
+    padding: 25px;
+    
+}
+
 .add-note-btn{
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     right: 10px;
     background-color: rgb(106, 226, 112);
@@ -24,4 +49,80 @@
     transform: scale(1.1)  rotate(10deg);
     opacity: 0.9;
     transition: all 0.3s;
+}
+
+.add-note button{
+    grid-area: close;
+    border-radius: 50%;
+    background-color: rgba(106, 226, 112,0.7);
+    border: 1px solid rgb(224, 221, 221);
+    position: relative;
+    transform: translate(-30%, -70%);
+    width: 35px;
+    height: 35px;
+}
+
+.add-note .type-btns{
+grid-area: btn;
+display: flex;
+justify-content: space-evenly;
+    align-items: center;
+
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+.add-note label{
+    grid-area: label;
+    font-size: 0.7rem;
+    margin-top: 20px;
+}
+
+.add-note textarea{
+    height: 100px;
+}
+
+.add-note .todos-inline{
+    grid-area: txt;
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 20px; */
+}
+.add-note .todos-inline input{
+    margin-bottom: 20px;
+}
+
+.add-note #img{
+    grid-area: txt;
+    height: 1rem;
+    margin-top: 20px;
+}
+
+.add-note .type-btns div{
+    cursor: pointer;
+}
+
+.add-note #note-txt::before{
+    font-family: Icons;
+    content: '\f15c';
+}
+.add-note #note-img::before{
+    font-family: Icons;
+    content: '\f03e';
+}
+.add-note #note-todos::before{
+    font-family: Icons;
+    content: '\f022';
+}
+.add-note #note-video::before{
+    font-family: Icons;
+    content: '\f1c8';
+}
+.add-note #note-audio::before{
+    font-family: Icons;
+    content: '\f1c7';
+}
+.add-note #note-todos-inline::before{
+    font-family: Icons;
+    content: '\f141';
 }

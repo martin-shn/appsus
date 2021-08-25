@@ -1,5 +1,6 @@
 import { Loader } from '../../../cmps/loader.jsx';
-import {keepService} from '../services/note.service.js'
+import { keepService } from '../services/note.service.js';
+import { eventBusService } from '../../../services/event-bus-service.js';
 
 export class NotePreview extends React.Component {
     state = {
@@ -8,15 +9,22 @@ export class NotePreview extends React.Component {
 
     componentDidMount() {
         this.setState({ note: this.props.note });
+        this.removeEventBus = eventBusService.on('update-note', (note) => {
+            if (note.id===this.state.note.id) this.setState({ note });
+        });
     }
 
-    handleChangel=({target})=>{
-        let tempTodos = this.state.note.info.todos;
-        tempTodos[target.id].doneAt=(tempTodos[target.id].doneAt)?null:Date.now();
-        this.setState({note:{...this.state.note,info:{...this.state.note.info,todos:tempTodos}}},
-            ()=>keepService.updateNote(this.state.note));
-        
+    componentWillUnmount() {
+        this.removeEventBus();
     }
+
+    handleChangel = ({ target }) => {
+        let tempTodos = this.state.note.info.todos;
+        tempTodos[target.id].doneAt = tempTodos[target.id].doneAt ? null : Date.now();
+        this.setState({ note: { ...this.state.note, info: { ...this.state.note.info, todos: tempTodos } } }, () =>
+            keepService.updateNote(this.state.note)
+        );
+    };
 
     getTodoList = (todos) => {
         return todos.map((todo, idx) => (
@@ -31,7 +39,7 @@ export class NotePreview extends React.Component {
         if (!this.state.note) return <Loader />;
         const note = this.state.note;
         return (
-            <div className="note" style={note.style}>
+            <div className='note' style={note.style}>
                 {note.info.title && <p className='note-title'>{note.info.title}</p>}
                 {note.type === 'note-txt' && <p>{note.info.txt}</p>}
                 {note.type === 'note-img' && <img src={note.info.src} />}

@@ -35,3 +35,7 @@
 .note audio{
     background-color: #333;
 }
+
+.note img{
+    width: 100%;
+}

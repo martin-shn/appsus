@@ -5,7 +5,7 @@ export const keepService = {
     query,
     getNoteById,
     removeNote,
-    updateNote
+    updateNote,
     // gotoNote,
 };
 
@@ -16,7 +16,7 @@ const notes = [
         isPinned: true,
         info: {
             txt: 'Fullstack Me Baby!',
-            title: 'tets'
+            title: 'tets',
         },
     },
     {
@@ -46,7 +46,7 @@ const notes = [
         type: 'note-video',
         info: {
             title: 'Some video',
-            src:'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+            src: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
         },
     },
     {
@@ -54,7 +54,7 @@ const notes = [
         type: 'note-video',
         info: {
             title: 'Youtube video',
-            src:'https://www.youtube.com/embed/IdqRXjCpFJk',
+            src: 'https://www.youtube.com/embed/IdqRXjCpFJk',
         },
     },
     {
@@ -62,7 +62,7 @@ const notes = [
         type: 'note-audio',
         info: {
             title: 'Lets hear audio',
-            src:'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav',
+            src: 'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav',
         },
     },
 ];
@@ -98,22 +98,69 @@ function getNoteById(noteId) {
 // }
 
 function addNote(type, info) {
+    const id = utilService.makeId();
     const noteToSave = {
-        id: utilService.makeId(),
+        id,
         type,
         isPinned: false,
         info,
     };
+    console.log('addNote: note to save: ', noteToSave);
     gNotes.unshift(noteToSave);
     _saveNotes();
-    return Promise.resolve(noteToSave);
+    return noteToSave;
 }
 
-function updateNote(noteToUpdate){
-    const noteIdx = gNotes.findIndex((note) => note.id === noteToUpdate.id);
-    gNotes.splice(noteIdx, 1, noteToUpdate);
-    _saveNotes();
-    return Promise.resolve();
+function updateNote(noteToUpdate) {
+    console.log('before modify:', noteToUpdate);
+    let note = { id: noteToUpdate.id, type: noteToUpdate.type, isPinned: false };
+    switch (noteToUpdate.type) {
+        case 'note-txt':
+            note.info = {
+                title: noteToUpdate.info.title,
+                txt: noteToUpdate.info.txt,
+            };
+            break;
+
+        case 'note-todos':
+            note.info = {
+                title: noteToUpdate.info.title,
+                label: noteToUpdate.info.label,
+                todos: noteToUpdate.info.todos,
+            };
+            break;
+
+        case 'note-todos-inline':
+            note.type='note-todos';
+            note.info = {
+                title: noteToUpdate.info.title,
+                label: noteToUpdate.info.label,
+                todos: noteToUpdate.info.todosInline.split(',').map((todo) => {
+                    return { txt: todo, doneAt: null };
+                }),
+            };
+            break;
+
+        default:
+            note.info = {
+                title: noteToUpdate.info.title,
+                src: noteToUpdate.info.src,
+            };
+            break;
+    }
+    console.log('after modify:', note);
+    if (!note.id) note = addNote(note.type, note.info);
+    else {
+        const noteIdx = gNotes.findIndex((n) => n.id === note.id);
+        gNotes.splice(noteIdx, 1, note);
+        // if (noteIdx) gNotes.splice(noteIdx, 1, noteToUpdate)
+        // else {
+        //     savedNote = addNote(noteToUpdate.type, noteToUpdate.info);
+        // }
+        _saveNotes();
+    }
+    console.log('saved note returned from service:', note);
+    return Promise.resolve(note);
 }
 
 function removeNote(noteId) {
