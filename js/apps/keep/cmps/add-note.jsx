@@ -21,10 +21,10 @@ export class AddNote extends React.Component {
     onBtn = ({ target }) => {
         switch (target.id) {
             case 'note-txt':
-                this.setState({ type: target.id, txt: '' }, () => console.log(this.state.note));
+                this.setState({ type: target.id, txt: '' });
                 break;
             case 'note-todos':
-                this.setState({ type: target.id, label: '', todos: [] }, () => console.log(this.state.note));
+                this.setState({ type: target.id, label: '', todos: [] });
                 break;
             case 'note-todos-inline':
                 this.setState(
@@ -33,13 +33,12 @@ export class AddNote extends React.Component {
                         label: '',
                         todos: [],
                         todosInline: '',
-                    },
-                    () => console.log(this.state.note)
+                    }
                 );
                 break;
             default:
                 //img+video+audio
-                this.setState({ type: target.id, src: 'http://' }, () => console.log(this.state.note));
+                this.setState({ type: target.id, src: 'http://' });
                 break;
         }
     };
@@ -70,9 +69,7 @@ export class AddNote extends React.Component {
                 todosInline: this.state.todosInline,
             },
         };
-        console.log('before update:', noteToSave, 'state:', this.state);
         keepService.updateNote(noteToSave).then((savedNote) => {
-            console.log('after update:', savedNote);
             this.setState(
                 {
                     title: '',
@@ -94,22 +91,27 @@ export class AddNote extends React.Component {
     handleChange = ({ target }) => {
         switch (target.name) {
             case 'title':
-                this.setState({ title: target.value }, () => console.log(this.state));
+                this.setState({ title: target.value });
                 break;
             case 'txt':
-                this.setState({ txt: target.value }, () => console.log(this.state));
+                this.setState({ txt: target.value });
                 break;
             case 'src':
-                this.setState({ src: target.value }, () => console.log(this.state));
+                this.setState({ src: target.value });
                 break;
             case 'label':
-                this.setState({ label: target.value }, () => console.log(this.state));
+                this.setState({ label: target.value });
                 break;
             case 'todos-inline':
-                this.setState({ todosInline: target.value }, () => console.log(this.state));
+                this.setState({ todosInline: target.value });
                 break;
         }
     };
+
+    onUpdateTodos=(todos)=>{
+        if (todos[todos.length-1].txt.trim()==='') todos.pop();
+        this.setState({todos})
+    }
 
     render() {
         const note = this.state;
@@ -136,7 +138,7 @@ export class AddNote extends React.Component {
                         {note.type === 'note-txt' && (
                             <React.Fragment>
                                 <label>Image URL:</label>
-                                <textarea id='txt' name='txt' onChange={this.handleChange} placeholder='Note goes here' />
+                                <textarea id='txt' name='txt' onChange={this.handleChange} value={note.txt} placeholder='Note goes here' />
                             </React.Fragment>
                         )}
 
@@ -156,7 +158,7 @@ export class AddNote extends React.Component {
                                     value={note.label}
                                     placeholder="Todo's label"
                                 />
-                                <AddTodoList todos={[]} />
+                                <AddTodoList todos={note.todos} onUpdateTodos={this.onUpdateTodos}/>
                             </div>
                         )}
                         {note.type === 'note-video' && (
@@ -186,7 +188,7 @@ export class AddNote extends React.Component {
                                     id='note-todos-inline'
                                     name='todos-inline'
                                     onChange={this.handleChange}
-                                    value={this.todosInline}
+                                    value={note.todosInline}
                                     placeholder="Comma seperated Todo's"
                                 />
                             </div>

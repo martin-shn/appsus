@@ -113,7 +113,7 @@ function addNote(type, info) {
 
 function updateNote(noteToUpdate) {
     console.log('before modify:', noteToUpdate);
-    let note = { id: noteToUpdate.id, type: noteToUpdate.type, isPinned: false };
+    let note = { id: noteToUpdate.id, type: noteToUpdate.type, isPinned: noteToUpdate.isPinned, style: noteToUpdate.style };
     switch (noteToUpdate.type) {
         case 'note-txt':
             note.info = {
@@ -131,7 +131,7 @@ function updateNote(noteToUpdate) {
             break;
 
         case 'note-todos-inline':
-            note.type='note-todos';
+            note.type = 'note-todos';
             note.info = {
                 title: noteToUpdate.info.title,
                 label: noteToUpdate.info.label,

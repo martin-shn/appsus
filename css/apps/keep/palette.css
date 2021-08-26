@@ -1,0 +1,30 @@
+.palette{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    /* transform: translateY(42px); */
+    border: 1px solid rgb(170, 170, 170);
+    padding: 5px;
+    background-color: #01b5f0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.palette div{
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(170, 170, 170);
+    box-sizing:content-box;
+    margin: -1px 0 0 -1px;
+    cursor: pointer;
+}
+
+.palette div:hover{
+    transform: scale(1.4);
+    border-radius: 7px;
+}

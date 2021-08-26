@@ -1,16 +1,18 @@
 import { Loader } from '../../../cmps/loader.jsx';
 import { keepService } from '../services/note.service.js';
 import { eventBusService } from '../../../services/event-bus-service.js';
+import { Palette } from './palette.jsx';
 
 export class NotePreview extends React.Component {
     state = {
         note: null,
+        isPalette: false,
     };
 
     componentDidMount() {
         this.setState({ note: this.props.note });
         this.removeEventBus = eventBusService.on('update-note', (note) => {
-            if (note.id===this.state.note.id) this.setState({ note });
+            if (note.id === this.state.note.id) this.setState({ note });
         });
     }
 
@@ -35,11 +37,31 @@ export class NotePreview extends React.Component {
         ));
     };
 
+    onPalette = () => {
+        this.setState({ isPalette: !this.state.isPalette });
+    };
+
+    onPaletteColor = (color) => {
+        this.setState({ note: { ...this.state.note, style: { backgroundColor: color } } }, () => keepService.updateNote(this.state.note));
+    };
+
+    onPin = () => {
+        console.log('pinned');
+        // if (this.state.note.isPinned) {
+            this.setState({ note: { ...this.state.note, isPinned: !this.state.note.isPinned } }, () => {
+                keepService.updateNote(this.state.note)
+                this.props.reload();
+            });
+        // }
+    };
+
     render() {
         if (!this.state.note) return <Loader />;
         const note = this.state.note;
         return (
-            <div className='note' style={note.style}>
+            <div className={`note ${(note.isPinned)?'pinned':'not-pinned'}`} style={note.style}>
+                <div className={`pin-icon ${(note.isPinned)?'pinned':'not-pinned'}`} onClick={this.onPin}></div>
+
                 {note.info.title && <p className='note-title'>{note.info.title}</p>}
                 {note.type === 'note-txt' && <p>{note.info.txt}</p>}
                 {note.type === 'note-img' && <img src={note.info.src} />}
@@ -67,6 +89,14 @@ export class NotePreview extends React.Component {
                         <source src={note.info.src} />
                     </audio>
                 )}
+
+                <div className='sub-menu'>
+                    <div className='palette-note icon' onClick={this.onPalette}></div>
+                    <div className='delete-note icon'></div>
+                    {this.state.isPalette && (
+                        <Palette onPaletteColor={this.onPaletteColor} onMouseLeave={() => this.setState({ isPalette: false })} />
+                    )}
+                </div>
             </div>
         );
     }

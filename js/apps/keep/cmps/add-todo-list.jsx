@@ -3,13 +3,20 @@ export class AddTodoList extends React.Component {
         todos: this.props.todos,
         // newTodo:{txt:'',doneAt:null},
     };
-    
+
     refLastInput;
 
     componentDidMount() {
         this.addTodo();
-        this.refLastInput=React.createRef();
+        this.refLastInput = React.createRef();
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps!==this.props) {
+            if(this.props.todos.length===0) this.setState({todos:[]})            
+        }
+    }
+    
 
     addTodo = () => {
         let todos = this.state.todos;
@@ -24,16 +31,22 @@ export class AddTodoList extends React.Component {
     handleChangel = ({ target }) => {
         let todos = this.state.todos;
         todos[target.id].doneAt = todos[target.id].doneAt ? null : Date.now();
-        this.setState({ todos }, () => console.log(this.state));
+        this.setState({ todos }, this.updateTodos);
     };
-    handleTxtChange = (ev) => {
+    handleTxtChange = ({target}) => {
         let todos = this.state.todos;
-        todos[ev.target.id] = { txt: ev.target.value, doneAt: todos[ev.target.id].doneAt };
-        this.setState({ todos }, () => console.log(this.state));
+        todos[target.id] = { txt: target.value, doneAt: todos[target.id].doneAt };
+        this.setState({ todos }, this.updateTodos);
     };
     handleKeyUp = ({ key }) => {
         if (key === 'Enter') this.addTodo();
     };
+
+    updateTodos=()=>{
+        let todos = this.state.todos.slice();
+        if (todos[todos.length-1].txt.trim()==='') todos.pop();
+        this.props.onUpdateTodos(todos);
+    }
 
     render() {
         const todos = this.state.todos;
@@ -58,7 +71,10 @@ export class AddTodoList extends React.Component {
                         </li>
                     ))}
                     <li>
-                        <input type='checkbox' onClick={this.addTodo} onChange={this.addTodo} />
+                        <input
+                            type='checkbox'
+                            disabled
+                        />
                         <input type='text' onClick={this.addTodo} onKeyDown={this.addTodo} placeholder='Click here to add a new item' />
                     </li>
                 </ul>
