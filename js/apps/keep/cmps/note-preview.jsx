@@ -67,6 +67,8 @@ export class NotePreview extends React.Component {
         else this.setState({isEdit:target.id})
     }
 
+    onDuplicate=({target})=>{}
+
     handleChange=({target})=>{
         let note = this.state.note;
         note.info[target.id]=target.value;
@@ -115,6 +117,7 @@ export class NotePreview extends React.Component {
 
                 <div className='sub-menu'>
                     <div className='palette-note icon' onClick={this.onPalette}></div>
+                    <div className='duplicate-note icon' name={`${note.id}`} onClick={this.onDuplicate}></div>
                     <div className='delete-note icon' id={`${note.id}`} onClick={this.onRemove}></div>
                     {this.state.isPalette && (
                         <Palette onPaletteColor={this.onPaletteColor} onMouseLeave={() => this.setState({ isPalette: false })} />
