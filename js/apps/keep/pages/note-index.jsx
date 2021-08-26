@@ -26,12 +26,16 @@ export class MissKeep extends React.Component{
         this.loadNotes();
     }
 
+    onRemove=(noteId)=>{
+        keepService.removeNote(noteId).then(()=>this.loadNotes())
+    }
+
     render(){
         if(!this.state.notes) return <Loader/>
         return (
             <section className="miss-keep">
                 <NoteFilter/>
-                <NoteList notes={this.state.notes} onSelectNote={this.onSelectNote} reload={this.loadNotes}/>
+                <NoteList notes={this.state.notes} onSelectNote={this.onSelectNote} reload={this.loadNotes} onRemove={this.onRemove}/>
                 <AddNote onAddNote={this.onAddNote}/>
             </section>
         )

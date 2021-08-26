@@ -55,6 +55,10 @@ export class NotePreview extends React.Component {
         // }
     };
 
+    onRemove=({target})=>{
+        this.props.onRemove(target.id);
+    }
+
     render() {
         if (!this.state.note) return <Loader />;
         const note = this.state.note;
@@ -92,7 +96,7 @@ export class NotePreview extends React.Component {
 
                 <div className='sub-menu'>
                     <div className='palette-note icon' onClick={this.onPalette}></div>
-                    <div className='delete-note icon'></div>
+                    <div className='delete-note icon' id={`${note.id}`} onClick={this.onRemove}></div>
                     {this.state.isPalette && (
                         <Palette onPaletteColor={this.onPaletteColor} onMouseLeave={() => this.setState({ isPalette: false })} />
                     )}
