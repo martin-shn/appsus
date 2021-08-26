@@ -9,6 +9,7 @@ import { MissBooks } from './js/apps/book/pages/MissBooks.jsx';
 import { BookDetails } from './js/apps/book/cmps/BookDetails.jsx';
 import { UserMsg } from './js/cmps/user-msg.jsx';
 import { EmailDetails } from './js/apps/email/cmps/email-details.jsx';
+import { EmailHeader } from './cmps/email-header.jsx';
 
 export function App() {
     return (
@@ -23,7 +24,7 @@ export function App() {
                 <Switch>
                     {/* <Route path="/book/edit/:bookId?" component={BookEdit} /> */}
                     <Route path='/book/:bookId' component={BookDetails} />
-                    <Route path='/email/:emailId' component={EmailDetails} />
+                    {/* <Route path='/email/:emailId' component={EmailDetails} /> */}
                     <Route path='/email' component={EmailApp} />
                     <Route path='/note' component={MissKeep} />
                     <Route path='/book' component={MissBooks} />

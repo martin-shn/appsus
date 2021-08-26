@@ -8,7 +8,7 @@ export class AddEmail extends React.Component {
         body: '',
         isRead: false,
         sentAt: null,
-        from: 'momo@momo.com',
+        from: 'mahatmagandi@appsus.com',
         to: 'Mahatma Gandi'
     }
 

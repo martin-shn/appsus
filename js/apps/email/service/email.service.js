@@ -16,7 +16,7 @@ const emails = [
         isRead: false,
         sentAt: 1551133930594,
         from: 'Lover',
-        to: 'momo@momo.com'
+        to: 'momo@gmail.com'
     },
     {
         id: 'e102',
@@ -38,26 +38,30 @@ const emails = [
     }
 ]
 
+export const loggedInUser = {
+    email: 'mahatmagandi@appsus.com',
+    fullname: 'Mahatma Gandi'
+}
 
 
 let gEmails;
 _loadEmails();
 
 function query(filterInput) {
-    if (filterInput) {
+    if (filterInput && filterInput.trim().length>0) {
+        // const {text,subject} = filterInput;
         const filteredEmails = gEmails.filter(
             (email) =>
-                email.from.toLowerCase().includes(filterInput.toLowerCase())
+                email.from.toLowerCase().includes(filterInput.trim().toLowerCase()) ||
+                email.subject.toLowerCase().includes(filterInput.trim().toLowerCase())||
+                email.body.toLowerCase().includes(filterInput.trim().toLowerCase())
+                
         );
         return Promise.resolve(filteredEmails);
     } else return Promise.resolve(gEmails);
 }
 
 
-export const loggedInUser = {
-    email: 'mahatmagandi@appsus.com',
-    fullname: 'Mahatma Gandi'
-}
 
 function getEmailById(emailId) {
     const email = gEmails.find((email) => email.id === emailId);
@@ -78,7 +82,7 @@ function removeEmail(emailId,idx) {
 }   
 
 function onToggleRead(emailId) {
-    getEmailById(emailId).then(()=>console.log(this.email.isRead))
+    getEmailById(emailId)
 }
 
 function _loadEmails() {

@@ -1,29 +1,29 @@
+import { emailsService } from "../service/email.service.js";
+
+
 export class EmailFilter extends React.Component {
     state = {
-        filterInput: ''
+        filterInput:'',
     }
 
     handleChange = (ev) => {
-        const filter = ev.target.name;
-        this.setState({ filterInput:  ev.target.value  }/*,
-            () => {
-                this.props.onSetFilter(this.state.filterBy);
-            }*/);
-            console.log(ev.target.value);
+        // const filter = ev.target.name;
+        this.setState({ filterInput:  ev.target.value  },()=>{
+            console.log(this.state);
+            this.onFilter();
+        });
     };
 
-    onFilter = (ev) => {
-        ev.preventDefault();
-        this.setState({ filterBy: { from: this.state.filterBy.from } },
-            () => {
-                this.props.onSetFilter(this.state.filterBy);
+    onFilter = () => {
+        emailsService.query(this.state.filterInput).then((res) => {
+                this.props.onSetFilter(res);
             });
     };
 
     render() {
         return (
             <React.Fragment>
-                <input type="search" name="from" placeholder="Search Mail" onChange={this.handleChange}></input>
+                <input className="search-im" type="search" name="from" placeholder="Search Mail" onChange={this.handleChange}></input>
             </React.Fragment>);
     }
 }
