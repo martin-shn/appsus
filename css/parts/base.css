@@ -1,9 +1,11 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 body {
     margin: 0;
+    overflow-y: scroll;
 }
 a,button {
     cursor: pointer;

@@ -34,7 +34,7 @@ export class MissKeep extends React.Component{
         if(!this.state.notes) return <Loader/>
         return (
             <section className="miss-keep">
-                <NoteFilter/>
+                <NoteFilter onFilter={(filteredNotes)=>this.setState({notes:filteredNotes})}/>
                 <NoteList notes={this.state.notes} onSelectNote={this.onSelectNote} reload={this.loadNotes} onRemove={this.onRemove}/>
                 <AddNote onAddNote={this.onAddNote}/>
             </section>

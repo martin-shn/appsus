@@ -72,15 +72,37 @@ _loadNotes();
 
 function query(filterBy) {
     if (filterBy) {
-        let { filterName, minPrice, maxPrice } = filterBy;
-        filterName = filterName ? filterName : '';
-        maxPrice = maxPrice ? +maxPrice : Infinity;
-        minPrice = minPrice ? +minPrice : 0;
-        const filteredBooks = gBooks.filter(
-            (book) =>
-                book.title.toLowerCase().includes(filterName.toLowerCase()) && book.listPrice.amount >= minPrice && book.listPrice.amount <= maxPrice
+        let { text, type } = filterBy;
+        let filterText, filterType;
+        filterText = text ? text : '';
+        filterType = type ? type : null;
+        if(filterText.trim()===''&&!filterType) return Promise.resolve(gNotes);
+        
+        let filteredNotes;
+
+        if(filterText&&!filterType) filteredNotes = gNotes.filter(
+            (note) =>
+                (
+                    (note.info.title && note.info.title.toLowerCase().includes(filterText.toLowerCase())) ||
+                    (note.info.txt && note.info.txt.toLowerCase().includes(filterText.toLowerCase())) ||
+                    (note.info.label && note.info.label.toLowerCase().includes(filterText.toLowerCase()))
+                ))
+        else if (!filterText && filterType) filteredNotes = gNotes.filter(
+            (note) =>
+                (
+                    note.type === filterType
+                ))
+        else filteredNotes = gNotes.filter(
+            (note) =>
+                (
+                    (note.info.title && note.info.title.toLowerCase().includes(filterText.toLowerCase())) ||
+                    (note.info.txt && note.info.txt.toLowerCase().includes(filterText.toLowerCase())) ||
+                    (note.info.label && note.info.label.toLowerCase().includes(filterText.toLowerCase()))
+                ) &&
+                note.type === filterType
         );
-        return Promise.resolve(filteredBooks);
+
+        return Promise.resolve(filteredNotes);
     } else return Promise.resolve(gNotes);
 }
 

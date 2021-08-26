@@ -1,0 +1,70 @@
+.filter-form{
+    margin-top: 20px;
+    padding: 0 25px;
+    margin-bottom: 0;
+}
+
+.filter-form .filter-type-btns {
+    grid-area: btn;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    font-size: 2rem;
+}
+
+.filter-form .filter-type-btns input:checked {
+    color: #0286b3;
+}
+.filter-form .filter-type-btns input {
+    cursor: pointer;
+    margin: 0 0 0 5px;
+    appearance: none;
+    width: auto;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+.filter-form #note-txt:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #note-txt::before {
+    font-family: Icons;
+    content: '\f15c';
+}
+.filter-form #note-img:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #note-img::before {
+    font-family: Icons;
+    content: '\f03e';
+}
+.filter-form #note-todos:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #note-todos::before {
+    font-family: Icons;
+    content: '\f022';
+}
+.filter-form #note-video:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #note-video::before {
+    font-family: Icons;
+    content: '\f1c8';
+}
+.filter-form #note-audio:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #note-audio::before {
+    font-family: Icons;
+    content: '\f1c7';
+}
+.filter-form #clear:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #clear::before {
+    font-family: Icons;
+    content: '\f51a';
+}
+
