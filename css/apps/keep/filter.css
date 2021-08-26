@@ -13,9 +13,16 @@
     font-size: 2rem;
 }
 
-.filter-form .filter-type-btns div {
+.filter-form .filter-type-btns input:checked {
+    color: #0286b3;
+}
+.filter-form .filter-type-btns input {
     cursor: pointer;
-    margin-left: 5px;
+    margin: 0 0 0 5px;
+    appearance: none;
+    width: auto;
+    padding: 0;
+    font-size: 1.5rem;
 }
 
 .filter-form #note-txt:hover {
@@ -53,3 +60,11 @@
     font-family: Icons;
     content: '\f1c7';
 }
+.filter-form #clear:hover {
+    text-shadow: -1px 1px 5px #333;
+}
+.filter-form #clear::before {
+    font-family: Icons;
+    content: '\f51a';
+}
+
