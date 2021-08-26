@@ -1,13 +1,14 @@
 
 .add-note{
     display: grid;
-    grid-template-areas: 'title close'
-    'label label'
-    'txt txt'
-    'btn .';
+    grid-template-areas: '. save close'
+    'title title title'
+    'label label label'
+    'txt txt txt'
+    'btn btn btn';
 
-    grid-template-columns: 100% 0%;
-    grid-template-rows: 2rem 1rem 1fr 2rem;
+    grid-template-columns: 1fr 80px 80px;
+    grid-template-rows: 1.5rem 2rem 1rem 1fr 2rem;
 
     /* height: 50vh; */
     width: 40vw;
@@ -19,7 +20,7 @@
     border: 1px solid rgb(224, 221, 221);
     border-radius: 3px;
     background-color: rgb(234, 240, 230);
-    padding: 25px;
+    padding: 15px 15px 25px 15px;
     
 }
 
@@ -30,7 +31,7 @@
     position: fixed;
     bottom: 10px;
     right: 10px;
-    background-color: rgb(106, 226, 112);
+    background-color: #01b5f0;;
     font-size: 2rem;
     line-height: 3rem;
     vertical-align: middle;
@@ -40,26 +41,56 @@
     box-shadow: 1px 2px 5px #333;
     
     cursor: pointer;
-    transform: scale(1)  rotate(0deg);
+    transform: scale(1);
     opacity: 0.3;
     transition: all 0.5s;
 }
 
 .add-note-btn:hover{
-    transform: scale(1.1)  rotate(10deg);
+    transform: scale(1.1);
     opacity: 0.9;
     transition: all 0.3s;
 }
 
-.add-note button{
+.add-note button:first-of-type::before{
+    font-family: Icons;
+    content: '\f057';
+    padding-right: 5px;
+}
+.add-note button:first-of-type{
     grid-area: close;
-    border-radius: 50%;
-    background-color: rgba(106, 226, 112,0.7);
-    border: 1px solid rgb(224, 221, 221);
-    position: relative;
-    transform: translate(-30%, -70%);
-    width: 35px;
-    height: 35px;
+    /* border-radius: 50%; */
+    /* background-color: rgba(106, 226, 112,0.7); */
+    /* border: 1px solid rgb(224, 221, 221); */
+    background-color: transparent;
+    border: 0;
+    /* position: relative; */
+    /* transform: translate(-30%, -70%); */
+    /* width: 35px; */
+    height: 1rem;
+    align-self: center;
+}
+.add-note button:last-of-type::before{
+    font-family: Icons;
+    content:'\f0c7';
+    padding-right: 5px;
+}
+.add-note button:last-of-type{
+    grid-area: save;
+    /* border-radius: 50%; */
+    /* background-color: rgba(106, 226, 112,0.7); */
+    /* border: 1px solid rgb(224, 221, 221); */
+    background-color: transparent;
+    border: 0;
+    /* position: relative; */
+    /* transform: translate(-30%, -70%); */
+    /* width: 35px; */
+    height: 1rem;
+    align-self: center;
+}
+
+.add-note button:hover{
+    text-shadow: 0 0 2px #333;
 }
 
 .add-note .type-btns{
@@ -72,6 +103,10 @@ justify-content: space-evenly;
     margin-top: 20px;
 }
 
+.add-note #title{
+    grid-area: title;
+}
+
 .add-note label{
     grid-area: label;
     font-size: 0.7rem;
@@ -79,7 +114,36 @@ justify-content: space-evenly;
 }
 
 .add-note textarea{
+    grid-area: txt;
     height: 100px;
+}
+
+.add-note .note-todos{
+    grid-area: txt;
+    display: flex;
+    flex-direction: column;
+}
+.add-note .note-todos .add-todo-list{
+    max-height: 45vh;
+    overflow: auto;
+}
+
+.add-note .note-todos .add-todo-list ul{
+    list-style-type: none;
+    padding-inline-start: 15px;
+}
+
+.add-note .note-todos .add-todo-list ul li {
+    display: flex;
+    align-items: center;
+}
+
+.add-note .note-todos .add-todo-list ul li input[type='checkbox']{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.add-note .note-todos .add-todo-list ul li input[type='text']{
+    flex-grow: 1;
 }
 
 .add-note .todos-inline{
@@ -102,27 +166,45 @@ justify-content: space-evenly;
     cursor: pointer;
 }
 
+.add-note #note-txt:hover{
+    text-shadow: -1px 1px 5px #333;
+}
 .add-note #note-txt::before{
     font-family: Icons;
     content: '\f15c';
+}
+.add-note #note-img:hover{
+    text-shadow: -1px 1px 5px #333;
 }
 .add-note #note-img::before{
     font-family: Icons;
     content: '\f03e';
 }
+.add-note #note-todos:hover{
+    text-shadow: -1px 1px 5px #333;
+}
 .add-note #note-todos::before{
     font-family: Icons;
     content: '\f022';
+}
+.add-note #note-video:hover{
+    text-shadow: -1px 1px 5px #333;
 }
 .add-note #note-video::before{
     font-family: Icons;
     content: '\f1c8';
 }
+.add-note #note-audio:hover{
+    text-shadow: -1px 1px 5px #333;
+}
 .add-note #note-audio::before{
     font-family: Icons;
     content: '\f1c7';
 }
+.add-note #note-todos-inline:hover{
+    text-shadow: -1px 1px 5px #333;
+}
 .add-note #note-todos-inline::before{
     font-family: Icons;
-    content: '\f141';
+    content: '\f142';
 }

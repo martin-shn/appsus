@@ -1,18 +1,18 @@
 import { storageService } from '../../../services/storage.service.js';
 import { keepService } from '../services/note.service.js';
+import { AddTodoList } from './add-todo-list.jsx';
 
 export class AddNote extends React.Component {
     state = {
-        title:'',
-        txt:'',
-        src:'',
-        id:null,
-        label:'',
-        type:'',
-        todosInline:'',
-        todos:[],
+        title: '',
+        txt: '',
+        src: '',
+        id: null,
+        label: '',
+        type: '',
+        todosInline: '',
+        todos: [],
     };
-
 
     onAddNote = () => {
         this.setState({ type: 'note-txt', title: '' });
@@ -21,83 +21,95 @@ export class AddNote extends React.Component {
     onBtn = ({ target }) => {
         switch (target.id) {
             case 'note-txt':
-                this.setState({ type: target.id, txt: '' }, () =>
-                    console.log(this.state.note)
-                );
+                this.setState({ type: target.id, txt: '' }, () => console.log(this.state.note));
                 break;
             case 'note-todos':
-                this.setState(
-                    { type: target.id, label: '', todos: [] },
-                    () => console.log(this.state.note)
-                );
+                this.setState({ type: target.id, label: '', todos: [] }, () => console.log(this.state.note));
                 break;
             case 'note-todos-inline':
                 this.setState(
                     {
-                        type: target.id, label: '', todos: [] ,todosInline: ''
+                        type: target.id,
+                        label: '',
+                        todos: [],
+                        todosInline: '',
                     },
                     () => console.log(this.state.note)
                 );
                 break;
             default:
                 //img+video+audio
-                this.setState({ type: target.id, src: 'http://' }, () =>
-                    console.log(this.state.note)
-                );
+                this.setState({ type: target.id, src: 'http://' }, () => console.log(this.state.note));
                 break;
         }
     };
 
     closeAddNote = () => {
-        this.setState({ note: null });
-        const noteToSave = {id:this.state.id,
-            type:this.state.type,
-            info:{
-                title:this.state.title,
-                label:this.state.label,
-                txt:this.state.txt,
-                src:this.state.src,
-                todos:this.state.todos,
-                todosInline:this.state.todosInline
-            } 
-        }
-        console.log('before update:',noteToSave,'state:',this.state);
+        this.setState({
+            title: '',
+            txt: '',
+            src: '',
+            id: null,
+            label: '',
+            type: '',
+            todosInline: '',
+            todos: [],
+        });
+    };
+
+    saveNote = () => {
+        const noteToSave = {
+            id: this.state.id,
+            type: this.state.type,
+            info: {
+                title: this.state.title,
+                label: this.state.label,
+                txt: this.state.txt,
+                src: this.state.src,
+                todos: this.state.todos,
+                todosInline: this.state.todosInline,
+            },
+        };
+        console.log('before update:', noteToSave, 'state:', this.state);
         keepService.updateNote(noteToSave).then((savedNote) => {
             console.log('after update:', savedNote);
-            this.setState({type:''},()=>{
-                this.props.onAddNote()
-            })
+            this.setState(
+                {
+                    title: '',
+                    txt: '',
+                    src: '',
+                    id: null,
+                    label: '',
+                    type: '',
+                    todosInline: '',
+                    todos: [],
+                },
+                () => {
+                    this.props.onAddNote();
+                }
+            );
         });
     };
 
     handleChange = ({ target }) => {
         switch (target.name) {
             case 'title':
-                this.setState({ title: target.value }, () =>
-                    console.log(this.state)
-                );
+                this.setState({ title: target.value }, () => console.log(this.state));
                 break;
             case 'txt':
-                this.setState({ txt: target.value }, () =>
-                    console.log(this.state)
-                );
+                this.setState({ txt: target.value }, () => console.log(this.state));
                 break;
             case 'src':
-                this.setState({ src: target.value }, () =>
-                    console.log(this.state)
-                );
+                this.setState({ src: target.value }, () => console.log(this.state));
                 break;
             case 'label':
-                this.setState({ label: target.value }, () =>
-                    console.log(this.state)
-                );
+                this.setState({ label: target.value }, () => console.log(this.state));
                 break;
             case 'todos-inline':
                 this.setState({ todosInline: target.value }, () => console.log(this.state));
                 break;
         }
     };
-
 
     render() {
         const note = this.state;
@@ -110,7 +122,8 @@ export class AddNote extends React.Component {
                 )}
                 {this.state.type && (
                     <div className='add-note'>
-                        <button onClick={this.closeAddNote}>X</button>
+                        <button onClick={this.closeAddNote}>Discard</button>
+                        <button onClick={this.saveNote}>Save</button>
                         <input
                             type='text'
                             id='title'
@@ -143,7 +156,7 @@ export class AddNote extends React.Component {
                                     value={note.label}
                                     placeholder="Todo's label"
                                 />
-                                
+                                <AddTodoList todos={[]} />
                             </div>
                         )}
                         {note.type === 'note-video' && (
