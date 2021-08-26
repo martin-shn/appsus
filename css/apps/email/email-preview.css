@@ -5,3 +5,24 @@
     background-color: rgba(242,245,245,0.8);
     color: #202124;
 }
+
+.email-list table {
+    width: 100%;
+}
+
+.email-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: inset 0 -1px 0 0 rgb(100 121 143 / 12%);
+    background: rgba(242,245,245,0.8);
+}
+
+.remove-email-btn {
+    border: none;
+    background-color: #fff;
+    font-size: 1.5rem;
+    background: none;
+    /* display: none; */
+}
+

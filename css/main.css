@@ -18,5 +18,6 @@
 @import url('apps/email/email-preview.css');
 @import url('apps/email/email-details.css');
 @import url('apps/email/add-email.css');
+@import url('apps/email/helpers.css');
 @import url('parts/fonts.css');
 @import url('parts/helpers.css');

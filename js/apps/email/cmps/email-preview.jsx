@@ -1,17 +1,22 @@
 import { emailsService } from "../service/email.service.js";
 const { Link } = ReactRouterDOM;
 
-export function EmailPreview({ email ,idx }) {
+export function EmailPreview({ email ,idx,onSelectEmail }) {
 
     return (
-        <tr>
-            <Link className="clear-link logo-txt" to={`/email/${email.id}`}>
+        <tr className="email-row">
                 <td>
                     <input type="checkbox"></input>
                 </td>
                 <td role="button">
                     ★
                 </td>
+            <Link 
+            className={`clear-link logo-txt ${!email.isRead && 'un-read'}`} 
+            onClick={() => {
+                emailsService.onToggleRead(email.id)
+                onSelectEmail(email)
+                }}>
                 <td className="from">
                     {`${email.from}`}
                 </td>
@@ -19,7 +24,7 @@ export function EmailPreview({ email ,idx }) {
                     {`${email.subject}`}
                 </td>
                 <td>
-                    <button onClick={ () => emailsService.removeEmail(email.id,idx).then(()=>this.props.history.push('/email'))}>X</button>
+                    {/* <button className="remove-email-btn" onClick={ () => emailsService.removeEmail(email.id,idx).then(()=>this.props.history.push('/email'))}>🗑</button> */}
                 </td>
             </Link>
         </tr>

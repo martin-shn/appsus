@@ -4,7 +4,8 @@ export const emailsService = {
     query,
     getEmailById,
     addEmail,
-    removeEmail
+    removeEmail,
+    onToggleRead
 }
 
 const emails = [
@@ -15,7 +16,7 @@ const emails = [
         isRead: false,
         sentAt: 1551133930594,
         from: 'Lover',
-        to: 'momo@momo.com'
+        to: 'momo@gmail.com'
     },
     {
         id: 'e102',
@@ -37,30 +38,30 @@ const emails = [
     }
 ]
 
+export const loggedInUser = {
+    email: 'mahatmagandi@appsus.com',
+    fullname: 'Mahatma Gandi'
+}
 
 
 let gEmails;
 _loadEmails();
 
-function query(filterBy) {
-    if (filterBy) {
-        // let { search, read, unread } = filterBy;
-        search = search ? search : '';
-        read = read ? read : false;
-        unread = unread ? unread : false;
+function query(filterInput) {
+    if (filterInput && filterInput.trim().length>0) {
+        // const {text,subject} = filterInput;
         const filteredEmails = gEmails.filter(
             (email) =>
-                email.from.toLowerCase().includes(search.toLowerCase())
+                email.from.toLowerCase().includes(filterInput.trim().toLowerCase()) ||
+                email.subject.toLowerCase().includes(filterInput.trim().toLowerCase())||
+                email.body.toLowerCase().includes(filterInput.trim().toLowerCase())
+                
         );
         return Promise.resolve(filteredEmails);
     } else return Promise.resolve(gEmails);
 }
 
 
-export const loggedInUser = {
-    email: 'mahatmagandi@appsus.com',
-    fullname: 'Mahatma Gandi'
-}
 
 function getEmailById(emailId) {
     const email = gEmails.find((email) => email.id === emailId);
@@ -75,8 +76,14 @@ function addEmail(email) {
 }
 
 function removeEmail(emailId,idx) {
-    this.getEmailById(emailId).then(console.log('find email:',gEmails.find(email => email.id === emailId),idx))
+    // const idx = gEmails.findIndex(email=>email.id===emailId);
+    gEmails.splice(idx,1)
+    _saveEmails
 }   
+
+function onToggleRead(emailId) {
+    getEmailById(emailId)
+}
 
 function _loadEmails() {
     gEmails = storageService.loadFromStorage('emailsDB')
