@@ -1,8 +1,10 @@
-import { storageService } from "../../../services/storage.service.js";
+import { storageService } from "../../../services/storage.service.js"
 
 export const emailsService = {
     query,
-    getEmailById
+    getEmailById,
+    addEmail,
+    removeEmail
 }
 
 const emails = [
@@ -31,7 +33,7 @@ const emails = [
         isRead: false,
         sentAt: 1551133930594,
         from: 'Nike',
-        to: 'momo@momo.com'
+        to: 'momo@gmail.com'
     }
 ]
 
@@ -40,19 +42,18 @@ const emails = [
 let gEmails;
 _loadEmails();
 
-function query() {
-    // if (filterBy) {
-    //     let { search, read, unread } = filterBy;
-    //     search = search ? search : '';
-    //     read = read ? read : false;
-    //     unread = unread ? unread : false;
-    //     const filteredEmails = gEmails.filter(
-    //         (email) =>
-    //             email.subject.toLowerCase().includes(search.toLowerCase())
-    //     );
-    //     return Promise.resolve(filteredEmails);
-    // } else return Promise.resolve(gEmails);
-    return Promise.resolve(gEmails)
+function query(filterBy) {
+    if (filterBy) {
+        // let { search, read, unread } = filterBy;
+        search = search ? search : '';
+        read = read ? read : false;
+        unread = unread ? unread : false;
+        const filteredEmails = gEmails.filter(
+            (email) =>
+                email.from.toLowerCase().includes(search.toLowerCase())
+        );
+        return Promise.resolve(filteredEmails);
+    } else return Promise.resolve(gEmails);
 }
 
 
@@ -68,17 +69,23 @@ function getEmailById(emailId) {
 }
 
 function addEmail(email) {
-
+    gEmails.push(email)
+    _saveEmails()
+    return Promise.resolve()
 }
 
+function removeEmail(emailId,idx) {
+    this.getEmailById(emailId).then(console.log('find email:',gEmails.find(email => email.id === emailId),idx))
+}   
+
 function _loadEmails() {
-    gEmails = storageService.loadFromStorage('emailsDB');
+    gEmails = storageService.loadFromStorage('emailsDB')
     if (!gEmails) {
-        gEmails = emails;
-        _saveEmails();
+        gEmails = emails
+        _saveEmails()
     }
 }
 
 function _saveEmails() {
-    storageService.saveToStorage('emailsDB', gEmails);
+    storageService.saveToStorage('emailsDB', gEmails)
 }

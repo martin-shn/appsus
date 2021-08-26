@@ -34,7 +34,7 @@
 }
 
 .add-email-btn:hover{
-    transform: scale(1.1)  rotate(10deg);
+    transform: scale(1.1) ;
     opacity: 0.9;
     transition: all 0.3s;
 }

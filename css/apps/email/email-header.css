@@ -5,6 +5,7 @@
 .email-header {
     background-color: rgb(255, 186, 0, 1);
     display: flex;
+    align-items: center;
 }
 
 .email-header :last-of-type {

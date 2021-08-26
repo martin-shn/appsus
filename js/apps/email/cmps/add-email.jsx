@@ -1,9 +1,15 @@
-import { emailsService } from "../service/email.service";
+import { emailsService } from "../service/email.service.js";
+import {utilService} from "../../../services/util.service.js"
+
 export class AddEmail extends React.Component {
     state = {
-        to: '',
+        id: '',
         subject: '',
-        message: ''
+        body: '',
+        isRead: false,
+        sentAt: null,
+        from: 'momo@momo.com',
+        to: 'Mahatma Gandi'
     }
 
     handleChange = (ev) => {
@@ -15,10 +21,13 @@ export class AddEmail extends React.Component {
     };
 
     onSaveEmail = (ev)=>{
+        const {subject, body, isRead, sentAt, from, to} = this.state
         ev.preventDefault()
-        const messageToSave={to:this.state.to,subject:this.state.subject,message:this.state.message};
-        const id = this.props.match.params.emailId+'s12'
-        emailsService.addEmail(messageToSave).then(()=>this.props.history.push(`/email/${id}`));
+        const id = utilService.makeId();
+        const messageToSave={id, subject, body, isRead, sentAt: new Date(), from, to};
+        console.log('props: ',this.props);
+        console.log('ev: ',ev);
+        emailsService.addEmail(messageToSave).then(()=>this.props.history.push(`/email`));
         
     }
     
@@ -29,10 +38,10 @@ export class AddEmail extends React.Component {
                 <div>
                     <h2>New Message</h2>
                 </div>
-                <form onSubmit={this.onSaveMessage}>
+                <form onSubmit={this.onSaveEmail}>
                     <input type="search" name="to" placeholder="To" value={this.state.to} onChange={this.handleChange} />
                     <input type="text" name="subject" placeholder="subject" value={this.state.subject} onChange={this.handleChange} />
-                    <textarea rows="5" name="message" value={this.state.message} onChange={this.handleChange}></textarea>
+                    <textarea rows="5" name="body" value={this.state.message} onChange={this.handleChange}></textarea>
                     <button className="send-btn">Send</button>
                 </form>
             </div>

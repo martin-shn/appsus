@@ -17,17 +17,14 @@ export class EmailDetails extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('prevProps: ', prevProps);
         if (prevProps.match.params.emailId !== this.props.match.params.emailId) {
             this.loadEmail();
         }
     }
 
     loadEmail = () => {
-        console.log(this.props);
         const id = this.props.match.params.emailId;
         emailsService.getEmailById(id).then((email) => {
-            console.log(email);
             if (!email) this.props.history.push('/email');
             this.setState({ email });
         });
