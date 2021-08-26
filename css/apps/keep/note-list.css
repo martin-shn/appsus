@@ -1,7 +1,17 @@
+
 .note-list {
     column-count: 5;
     column-gap: 40px;
     /* max-width: 1200px; */
     margin: 0 auto;
     padding: 30px;
+}
+
+.pinned-notes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* max-width: 1200px; */
+    margin: 0 auto 20px;
+    padding: 30px 30px 0;
 }
