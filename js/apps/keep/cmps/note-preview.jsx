@@ -1,5 +1,6 @@
 import { Loader } from '../../../cmps/loader.jsx';
 import { keepService } from '../services/note.service.js';
+import { utilService } from '../../../services/util.service.js';
 import { eventBusService } from '../../../services/event-bus-service.js';
 import { Palette } from './palette.jsx';
 
@@ -7,6 +8,7 @@ export class NotePreview extends React.Component {
     state = {
         note: null,
         isPalette: false,
+        isEdit:false,
     };
 
     componentDidMount() {
@@ -20,21 +22,22 @@ export class NotePreview extends React.Component {
         this.removeEventBus();
     }
 
-    handleChangel = ({ target }) => {
+    handleChangeTodo = ({ target }) => {
         let tempTodos = this.state.note.info.todos;
-        tempTodos[target.id].doneAt = tempTodos[target.id].doneAt ? null : Date.now();
+        tempTodos[+target.id].doneAt = tempTodos[+target.id].doneAt ? null : Date.now();
         this.setState({ note: { ...this.state.note, info: { ...this.state.note.info, todos: tempTodos } } }, () =>
             keepService.updateNote(this.state.note)
         );
     };
 
     getTodoList = (todos) => {
-        return todos.map((todo, idx) => (
-            <li key={idx}>
-                <input type='checkbox' checked={todo.doneAt ? true : false} onChange={this.handleChangel} id={idx} />
-                <label htmlFor={idx}>{todo.txt}</label>
+        return todos.map((todo,idx) => {
+            const id=String(idx).padStart(2,0)
+            return <li key={id}>
+                <input type='checkbox' checked={todo.doneAt ? true : false} onChange={this.handleChangeTodo} id={id} />
+                <label htmlFor={id}>{todo.txt}</label>
             </li>
-        ));
+        });
     };
 
     onPalette = () => {
@@ -59,15 +62,31 @@ export class NotePreview extends React.Component {
         this.props.onRemove(target.id);
     }
 
+    onEdit=({target})=>{
+        if(this.state.isEdit) this.setState({isEdit:null})
+        else this.setState({isEdit:target.id})
+    }
+
+    handleChange=({target})=>{
+        let note = this.state.note;
+        note.info[target.id]=target.value;
+        this.setState({note},()=>keepService.updateNote(this.state.note))
+    }
+
     render() {
         if (!this.state.note) return <Loader />;
         const note = this.state.note;
+        const isEdit=this.state.isEdit;
         return (
             <div className={`note ${(note.isPinned)?'pinned':'not-pinned'}`} style={note.style}>
                 <div className={`pin-icon ${(note.isPinned)?'pinned':'not-pinned'}`} onClick={this.onPin}></div>
 
-                {note.info.title && <p className='note-title'>{note.info.title}</p>}
-                {note.type === 'note-txt' && <p>{note.info.txt}</p>}
+                {note.info.title && !isEdit&& <p id="title" className='note-title' onClick={this.onEdit}>{note.info.title}</p>}
+                {isEdit==='title' && <input className='note-title' id="title" autoFocus onChange={this.handleChange} onBlur={this.onEdit} value={note.info.title}/>}
+                
+                {note.type === 'note-txt' && !isEdit && <p id="txt" onClick={this.onEdit}>{note.info.txt}</p>}
+                {isEdit==='txt' && note.type==='note-txt' && <textarea onBlur={this.onEdit} id="txt" autoFocus onChange={this.handleChange} value={note.info.txt}/>}
+                
                 {note.type === 'note-img' && <img src={note.info.src} />}
                 {note.type === 'note-todos' && (
                     <React.Fragment>
