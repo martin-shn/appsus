@@ -1,16 +1,15 @@
 export class EmailFilter extends React.Component {
     state = {
-        filterBy: {
-            from: ''
-        }
+        filterInput: ''
     }
 
     handleChange = (ev) => {
         const filter = ev.target.name;
-        this.setState({ filterBy: { ...this.state.filterBy, [filter]: ev.target.value } }/*,
+        this.setState({ filterInput:  ev.target.value  }/*,
             () => {
                 this.props.onSetFilter(this.state.filterBy);
             }*/);
+            console.log(ev.target.value);
     };
 
     onFilter = (ev) => {
@@ -24,9 +23,7 @@ export class EmailFilter extends React.Component {
     render() {
         return (
             <React.Fragment>
-
                 <input type="search" name="from" placeholder="Search Mail" onChange={this.handleChange}></input>
-
             </React.Fragment>);
     }
 }

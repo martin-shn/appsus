@@ -4,7 +4,8 @@ export const emailsService = {
     query,
     getEmailById,
     addEmail,
-    removeEmail
+    removeEmail,
+    onToggleRead
 }
 
 const emails = [
@@ -42,15 +43,11 @@ const emails = [
 let gEmails;
 _loadEmails();
 
-function query(filterBy) {
-    if (filterBy) {
-        // let { search, read, unread } = filterBy;
-        search = search ? search : '';
-        read = read ? read : false;
-        unread = unread ? unread : false;
+function query(filterInput) {
+    if (filterInput) {
         const filteredEmails = gEmails.filter(
             (email) =>
-                email.from.toLowerCase().includes(search.toLowerCase())
+                email.from.toLowerCase().includes(filterInput.toLowerCase())
         );
         return Promise.resolve(filteredEmails);
     } else return Promise.resolve(gEmails);
@@ -75,8 +72,14 @@ function addEmail(email) {
 }
 
 function removeEmail(emailId,idx) {
-    this.getEmailById(emailId).then(console.log('find email:',gEmails.find(email => email.id === emailId),idx))
+    // const idx = gEmails.findIndex(email=>email.id===emailId);
+    gEmails.splice(idx,1)
+    _saveEmails
 }   
+
+function onToggleRead(emailId) {
+    getEmailById(emailId).then(()=>console.log(this.email.isRead))
+}
 
 function _loadEmails() {
     gEmails = storageService.loadFromStorage('emailsDB')

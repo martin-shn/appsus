@@ -37,11 +37,12 @@ export class AddEmail extends React.Component {
             <div className="add-email">
                 <div>
                     <h2>New Message</h2>
+                    <button >x</button>
                 </div>
                 <form onSubmit={this.onSaveEmail}>
                     <input type="search" name="to" placeholder="To" value={this.state.to} onChange={this.handleChange} />
                     <input type="text" name="subject" placeholder="subject" value={this.state.subject} onChange={this.handleChange} />
-                    <textarea rows="5" name="body" value={this.state.message} onChange={this.handleChange}></textarea>
+                    <textarea className="add-email-txt" rows="5" name="body" value={this.state.message} onChange={this.handleChange}></textarea>
                     <button className="send-btn">Send</button>
                 </form>
             </div>

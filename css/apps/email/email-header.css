@@ -12,10 +12,26 @@
     justify-content: center;
 }
 
+.email-header a {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+}
+
 .email-header .logo {
     width: 40px;
 }
 
-.email-header .logo-txt {
-    font-size: 1.8rem;
+input {
+    margin: auto;
+    width: 300px;
+    /* border: none; */
+    color: #606e83;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: rgba(241,243,244,0.24);
+    transition: all 100ms ease-in,width 100ms ease-out;
+    transition-duration: 100ms, 100ms;
+    transition-timing-function: ease-in, ease-out;
+    transition-delay: 0s, 0s;
 }
