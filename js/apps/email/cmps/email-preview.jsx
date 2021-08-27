@@ -26,11 +26,20 @@ export function EmailPreview({ email ,idx,onSelectEmail,reload }) {
                 <td>
                     <button className="remove-email-btn" onClick={()=>onRemoveMail(reload,idx)}>🗑</button>
                 </td>
+                <td>
+                    <button className="mark-unread-email-btn" onClick={()=>onMarkAsUnread(reload,idx,email)}>✉</button>
+                </td>
         </tr>
     );
 }
 
-function onRemoveMail(reload,idx){
+function onRemoveMail(reload,idx) {
     emailsService.removeEmail(idx)
     .then(()=>reload())
+}
+
+function onMarkAsUnread(reload, idx,email) {
+    emailsService.toggleMarkAsUnread(idx)
+    .then(()=>reload())
+    console.log('email: ',email);
 }

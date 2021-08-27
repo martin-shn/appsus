@@ -5,7 +5,8 @@ export const emailsService = {
     getEmailById,
     addEmail,
     removeEmail,
-    onToggleRead
+    onToggleRead,
+    toggleMarkAsUnread
 }
 
 const emails = [
@@ -84,6 +85,11 @@ function removeEmail(idx) {
     return Promise.resolve()    
 }   
 
+function toggleMarkAsUnread(idx) {
+    gEmails[idx].isRead = !gEmails[idx].isRead
+    return Promise.resolve()
+}
+
 function onToggleRead(emailId) {
     getEmailById(emailId)
 }
@@ -99,3 +105,4 @@ function _loadEmails() {
 function _saveEmails() {
     storageService.saveToStorage('emailsDB', gEmails)
 }
+
