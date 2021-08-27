@@ -1,7 +1,8 @@
 import { emailsService } from '../service/email.service.js';
 
 export function EmailPreview({ email, idx, onSelectEmail, reload, folder }) {
-    if (folder && folder !== email.folder) return <React.Fragment></React.Fragment>;
+    if (folder && (folder!=="starred" && folder !== email.folder)) return <React.Fragment></React.Fragment>;
+    
     return (
         <tr className='email-row'>
             <td>

@@ -6,6 +6,8 @@ export const emailsService = {
     addEmail,
     removeEmail,
     onToggleRead,
+    // toggleMarkAsUnread,
+    getStarredEmails,
     onToggleStarred
 }
 
@@ -105,6 +107,10 @@ function query(filterInput) {
     } else return Promise.resolve(gEmails);
 }
 
+function getStarredEmails(){
+    const starredEmails = gEmails.filter(email=>email.isStarred)
+    return Promise.resolve(starredEmails)
+}
 
 
 function getEmailById(emailId) {
