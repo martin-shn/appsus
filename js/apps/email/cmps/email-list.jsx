@@ -1,7 +1,6 @@
 import { EmailPreview } from "./email-preview.jsx";
 export function EmailList({ onSelectEmail, emails,reload ,folder}) {
     folder = folder.folder;
-    console.log(folder);
     return (
         <div className='email-list'>
             <table>
