@@ -24,7 +24,7 @@ export class NotePreview extends React.Component {
 
     handleChangeTodo = ({ target }) => {
         let tempTodos = this.state.note.info.todos;
-        tempTodos[+target.id].doneAt = tempTodos[+target.id].doneAt ? null : Date.now();
+        tempTodos[+target.name].doneAt = tempTodos[+target.name].doneAt ? null : Date.now();
         this.setState({ note: { ...this.state.note, info: { ...this.state.note.info, todos: tempTodos } } }, () =>
             keepService.updateNote(this.state.note)
         );
@@ -32,10 +32,9 @@ export class NotePreview extends React.Component {
 
     getTodoList = (todos) => {
         return todos.map((todo,idx) => {
-            const id=String(idx).padStart(2,0)
-            return <li key={id}>
-                <input type='checkbox' checked={todo.doneAt ? true : false} onChange={this.handleChangeTodo} id={id} />
-                <label htmlFor={id}>{todo.txt}</label>
+            return <li key={todo.id}>
+                <input type='checkbox' checked={todo.doneAt ? true : false} onChange={this.handleChangeTodo} name={idx} id={todo.id} />
+                <label htmlFor={todo.id}>{todo.txt}</label>
             </li>
         });
     };
@@ -49,7 +48,6 @@ export class NotePreview extends React.Component {
     };
 
     onPin = () => {
-        console.log('pinned');
         // if (this.state.note.isPinned) {
             this.setState({ note: { ...this.state.note, isPinned: !this.state.note.isPinned } }, () => {
                 keepService.updateNote(this.state.note)
@@ -67,7 +65,11 @@ export class NotePreview extends React.Component {
         else this.setState({isEdit:target.id})
     }
 
-    onDuplicate=({target})=>{}
+    onDuplicate=({target})=>{
+        keepService.duplicateNote(this.state.note.id).then((newNote)=>{
+            this.props.reload();
+        })
+    }
 
     handleChange=({target})=>{
         let note = this.state.note;
@@ -75,25 +77,41 @@ export class NotePreview extends React.Component {
         this.setState({note},()=>keepService.updateNote(this.state.note))
     }
 
+    isLtr=(field)=>{
+        const note = this.state.note;
+        if(field==='todos') {
+            field=note.info.todos[0]?note.info.todos[0].txt:null;
+        }
+        else {
+            field = note.info[field]?note.info[field]:null;
+        }
+        if (!field) return true;
+        return field?(field.charCodeAt(0)>=65&&field.charCodeAt(0)<=90)||
+        (field.charCodeAt(0)>=97&&field.charCodeAt(0)<=122):false;
+    }
+
     render() {
         if (!this.state.note) return <Loader />;
         const note = this.state.note;
         const isEdit=this.state.isEdit;
+        // const isRtlTitle=note.info.title?note.info.title.charCodeAt(0)===48:false;
+        // const isRtlTxt=note.info.txt?note.info.txt.charCodeAt(0)===48:false;
+        // const isRtlLabel=note.info.label?note.info.label.charCodeAt(0)===48:false;
         return (
             <div className={`note ${(note.isPinned)?'pinned':'not-pinned'}`} style={note.style}>
                 <div className={`pin-icon ${(note.isPinned)?'pinned':'not-pinned'}`} onClick={this.onPin}></div>
 
-                {note.info.title && !isEdit&& <p id="title" className='note-title' onClick={this.onEdit}>{note.info.title}</p>}
+                {note.info.title && !isEdit&& <p id="title" className={`note-title ${this.isLtr('title')?'ltr':'rtl'}`} onClick={this.onEdit}>{note.info.title}</p>}
                 {isEdit==='title' && <input className='note-title' id="title" autoFocus onChange={this.handleChange} onBlur={this.onEdit} value={note.info.title}/>}
                 
-                {note.type === 'note-txt' && !isEdit && <p id="txt" onClick={this.onEdit}>{note.info.txt}</p>}
+                {note.type === 'note-txt' && !isEdit && <p id="txt" className={`${this.isLtr('txt')?'ltr':'rtl'}`} onClick={this.onEdit}>{note.info.txt}</p>}
                 {isEdit==='txt' && note.type==='note-txt' && <textarea onBlur={this.onEdit} id="txt" autoFocus onChange={this.handleChange} value={note.info.txt}/>}
                 
                 {note.type === 'note-img' && <img src={note.info.src} />}
                 {note.type === 'note-todos' && (
                     <React.Fragment>
-                        <p>{note.info.label}</p>
-                        <ul>{this.getTodoList(note.info.todos)}</ul>
+                        <p id="label" className={`${this.isLtr('label')?'ltr':'rtl'}`}>{note.info.label}</p>
+                        <ul className={`${this.isLtr('todos')?'ltr':'rtl'}`}>{this.getTodoList(note.info.todos)}</ul>
                     </React.Fragment>
                 )}
                 {note.type === 'note-video' && !note.info.src.includes('www.youtube.com') && (
@@ -116,9 +134,9 @@ export class NotePreview extends React.Component {
                 )}
 
                 <div className='sub-menu'>
-                    <div className='palette-note icon' onClick={this.onPalette}></div>
-                    <div className='duplicate-note icon' name={`${note.id}`} onClick={this.onDuplicate}></div>
-                    <div className='delete-note icon' id={`${note.id}`} onClick={this.onRemove}></div>
+                    <div className='palette-note icon' onClick={this.onPalette} title="Note color"></div>
+                    <div className='duplicate-note icon' name={`${note.id}`} onClick={this.onDuplicate} title="Duplicate note"></div>
+                    <div className='delete-note icon' id={`${note.id}`} onClick={this.onRemove} title="Discard note"></div>
                     {this.state.isPalette && (
                         <Palette onPaletteColor={this.onPaletteColor} onMouseLeave={() => this.setState({ isPalette: false })} />
                     )}

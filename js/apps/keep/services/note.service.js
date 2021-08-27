@@ -6,6 +6,7 @@ export const keepService = {
     getNoteById,
     removeNote,
     updateNote,
+    duplicateNote,
     // gotoNote,
 };
 
@@ -36,8 +37,8 @@ const notes = [
         info: {
             label: 'Get my stuff together',
             todos: [
-                { txt: 'Driving liscence', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 },
+                { txt: 'Driving liscence', doneAt: null, id: 'us34g' },
+                { txt: 'Coding power', doneAt: 187111111, id: '4gfds' },
             ],
         },
     },
@@ -76,31 +77,26 @@ function query(filterBy) {
         let filterText, filterType;
         filterText = text ? text : '';
         filterType = type ? type : null;
-        if(filterText.trim()===''&&!filterType) return Promise.resolve(gNotes);
-        
+        if (filterText.trim() === '' && !filterType) return Promise.resolve(gNotes);
+
         let filteredNotes;
 
-        if(filterText&&!filterType) filteredNotes = gNotes.filter(
-            (note) =>
-                (
+        if (filterText && !filterType)
+            filteredNotes = gNotes.filter(
+                (note) =>
                     (note.info.title && note.info.title.toLowerCase().includes(filterText.toLowerCase())) ||
                     (note.info.txt && note.info.txt.toLowerCase().includes(filterText.toLowerCase())) ||
                     (note.info.label && note.info.label.toLowerCase().includes(filterText.toLowerCase()))
-                ))
-        else if (!filterText && filterType) filteredNotes = gNotes.filter(
-            (note) =>
-                (
+            );
+        else if (!filterText && filterType) filteredNotes = gNotes.filter((note) => note.type === filterType);
+        else
+            filteredNotes = gNotes.filter(
+                (note) =>
+                    ((note.info.title && note.info.title.toLowerCase().includes(filterText.toLowerCase())) ||
+                        (note.info.txt && note.info.txt.toLowerCase().includes(filterText.toLowerCase())) ||
+                        (note.info.label && note.info.label.toLowerCase().includes(filterText.toLowerCase()))) &&
                     note.type === filterType
-                ))
-        else filteredNotes = gNotes.filter(
-            (note) =>
-                (
-                    (note.info.title && note.info.title.toLowerCase().includes(filterText.toLowerCase())) ||
-                    (note.info.txt && note.info.txt.toLowerCase().includes(filterText.toLowerCase())) ||
-                    (note.info.label && note.info.label.toLowerCase().includes(filterText.toLowerCase()))
-                ) &&
-                note.type === filterType
-        );
+            );
 
         return Promise.resolve(filteredNotes);
     } else return Promise.resolve(gNotes);
@@ -127,14 +123,12 @@ function addNote(type, info) {
         isPinned: false,
         info,
     };
-    console.log('addNote: note to save: ', noteToSave);
     gNotes.unshift(noteToSave);
     _saveNotes();
     return noteToSave;
 }
 
 function updateNote(noteToUpdate) {
-    console.log('before modify:', noteToUpdate);
     let note = { id: noteToUpdate.id, type: noteToUpdate.type, isPinned: noteToUpdate.isPinned, style: noteToUpdate.style };
     switch (noteToUpdate.type) {
         case 'note-txt':
@@ -170,7 +164,6 @@ function updateNote(noteToUpdate) {
             };
             break;
     }
-    console.log('after modify:', note);
     if (!note.id) note = addNote(note.type, note.info);
     else {
         const noteIdx = gNotes.findIndex((n) => n.id === note.id);
@@ -181,8 +174,21 @@ function updateNote(noteToUpdate) {
         // }
         _saveNotes();
     }
-    console.log('saved note returned from service:', note);
     return Promise.resolve(note);
+}
+
+function duplicateNote(noteId) {
+    const noteIdx = gNotes.findIndex((note) => note.id === noteId);
+    let newNote = JSON.parse(JSON.stringify(gNotes[noteIdx]));
+    newNote.id = utilService.makeId();
+    if(newNote.type==='note-todos'){
+        newNote.info.todos.forEach((todo)=>{
+            todo.id=utilService.makeId()
+        })
+    }
+    gNotes.splice(noteIdx, 0, newNote);
+    _saveNotes();
+    return Promise.resolve(newNote);
 }
 
 function removeNote(noteId) {

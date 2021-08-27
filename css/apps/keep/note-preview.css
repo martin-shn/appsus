@@ -9,6 +9,12 @@
     position: relative;
 }
 
+.note .ltr{
+    direction: ltr;
+}
+.note .rtl{
+    direction: rtl;
+}
 .note .note-title{
     text-align: center;
     font-weight: 600;
@@ -30,6 +36,7 @@
 
 .note ul li{
     margin-bottom: 7px;
+    display: flex;
 }
 
 .note ul li input:checked~label{
@@ -47,3 +54,69 @@
 .note img{
     width: 100%;
 }
+
+/* ICONS & SUB MENU */
+
+
+
+.note .not-pinned{
+    color: #333;
+    opacity: 0.3;
+    transition: all 0.4s;
+}
+
+.note .not-pinned:hover{
+    opacity: 1;
+    transform: scale(1.4);
+    transition: all 0.4s;
+}
+
+.note.not-pinned .sub-menu{
+    opacity: 0;
+    transition: all 1s;
+
+    margin: -5px;
+    width: calc(100% + 10px);
+    height: 30px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.note .sub-menu:hover{
+    opacity: 0.9;
+    background-color: #01b4f0a1;
+    transition: all 0.4s;
+}
+
+/* all sub menu icons */
+.note .sub-menu .icon{
+    padding: 5px;
+    cursor: pointer;
+}
+.note .sub-menu .icon:hover{
+    text-shadow: 0 0 3px #333;
+}
+
+/* delete icon */
+.note .sub-menu .delete-note::before{
+    font-family: Icons;
+    content: '\f2ed';
+}
+
+
+/* palette icon */
+.note .sub-menu .palette-note::before{
+    font-family: Icons;
+    content: '\f53f';
+}
+
+/* duplicate icon */
+.note .sub-menu .duplicate-note::before{
+    font-family: Icons;
+    content: '\f24d';
+}
+
+    

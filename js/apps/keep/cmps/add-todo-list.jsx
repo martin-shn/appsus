@@ -1,3 +1,5 @@
+import { utilService } from '../../../services/util.service.js';
+
 export class AddTodoList extends React.Component {
     state = {
         todos: this.props.todos,
@@ -20,11 +22,12 @@ export class AddTodoList extends React.Component {
 
     addTodo = () => {
         let todos = this.state.todos;
+        const id = utilService.makeId();
         if (todos.length > 0 && todos[todos.length - 1].txt.trim() === '') {
             this.refLastInput.current.focus();
             return;
         }
-        todos.push({ txt: '', doneAt: null });
+        todos.push({ txt: '', doneAt: null, id });
         this.setState({ todos });
     };
 
@@ -35,7 +38,7 @@ export class AddTodoList extends React.Component {
     };
     handleTxtChange = ({target}) => {
         let todos = this.state.todos;
-        todos[target.id] = { txt: target.value, doneAt: todos[target.id].doneAt };
+        todos[target.id].txt = target.value;
         this.setState({ todos }, this.updateTodos);
     };
     handleKeyUp = ({ key }) => {
