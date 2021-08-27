@@ -63,3 +63,18 @@
     font-family: Icons;
     content: '\f658';
 }
+
+.email-list table .isStarred::before{
+    font-family: Icons;
+    content: '\f005';
+}
+
+.email-list table .isStarred.starred::before{
+    font-family: Icons;
+    content: '\f005';
+}
+
+.email-list table .remove-email-btn::before{
+    font-family: Icons;
+    content: '\f1f8';
+}

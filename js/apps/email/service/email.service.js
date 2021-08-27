@@ -6,7 +6,7 @@ export const emailsService = {
     addEmail,
     removeEmail,
     onToggleRead,
-    toggleMarkAsUnread
+    onToggleStarred
 }
 
 const emails = [
@@ -125,14 +125,16 @@ function removeEmail(idx) {
     return Promise.resolve()    
 }   
 
-function toggleMarkAsUnread(idx) {
-    gEmails[idx].isRead = !gEmails[idx].isRead
-    return Promise.resolve()
-}
-
 function onToggleRead(emailId) {
     const idx = gEmails.findIndex(email=>email.id===emailId);
     gEmails[idx].isRead=!gEmails[idx].isRead;
+    _saveEmails()
+    return Promise.resolve()
+}
+
+function onToggleStarred(emailId) {
+    const idx = gEmails.findIndex(email=>email.id===emailId);
+    gEmails[idx].isStarred = !gEmails[idx].isStarred;
     _saveEmails()
     return Promise.resolve()
 }

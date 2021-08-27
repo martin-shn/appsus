@@ -7,7 +7,7 @@ export function EmailPreview({ email, idx, onSelectEmail, reload, folder }) {
             <td>
                 <input type='checkbox'></input>
             </td>
-            <td role='button'>★</td>
+            <td className={`isStarred ${email.isStarred?'starred':''}`} onClick={()=>onStarredClick(email.id,reload,email)}></td>
             <td className={`isRead ${email.isRead?'read':''}`} onClick={()=>onReadClick(email.id,reload)}></td>
             <td
                 className={`from logo-txt ${!email.isRead && 'un-read'}`}
@@ -24,7 +24,7 @@ export function EmailPreview({ email, idx, onSelectEmail, reload, folder }) {
                 }}
             >{`${email.subject}`}</td>
                 <td>
-                    <button className="remove-email-btn" onClick={()=>onRemoveMail(reload,idx)}>🗑</button>
+                    <button className="remove-email-btn" onClick={()=>onRemoveMail(reload,idx)}></button>
                 </td>
                
         </tr>
@@ -39,4 +39,10 @@ function onRemoveMail(reload,idx) {
 function onReadClick(emailId, reload) {
     emailsService.onToggleRead(emailId)
     .then(()=>reload())
+}
+
+function onStarredClick(emailId, reload,email) {
+    emailsService.onToggleStarred(emailId)
+    .then(()=>reload())
+    console.log('email isStarred?: ',email);
 }
