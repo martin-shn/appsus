@@ -24,17 +24,27 @@
     background: rgba(242,245,245,0.8);
 }
 
-.email-list thead tr td:nth-of-type(1){
-    width: 5px;
+.email-list table th{
+    text-align: left;
 }
-.email-list thead tr td:nth-of-type(2){
-    width: 10px;
+
+.email-list td:nth-of-type(1){
+    min-width: 25px;
 }
-.email-list thead tr td:nth-of-type(3){
-    width: 100%;
+.email-list td:nth-of-type(2){
+    min-width: 25px;
 }
-.email-list thead tr td:nth-of-type(4){
-    width: 10px;
+.email-list td:nth-of-type(3){
+    min-width: 25px;
+}
+.email-list thead th:nth-of-type(4){
+    width: 20%;
+}
+.email-list thead th:nth-of-type(5){
+    width: 80%;
+}
+.email-list td:nth-of-type(6){
+    min-width: 25px;
 }
 
 .remove-email-btn {
@@ -45,3 +55,11 @@
     /* display: none; */
 }
 
+.email-list table .isRead::before{
+    font-family: Icons;
+    content: '\f0e0';
+}
+.email-list table .isRead.read::before{
+    font-family: Icons;
+    content: '\f658';
+}

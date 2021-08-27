@@ -12,7 +12,7 @@ export const emailsService = {
 const emails = [
     {
         id: 'e101',
-        subject: 'Miss you!',
+        subject: 'Inbox > Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
         isStarred:false,
@@ -23,7 +23,7 @@ const emails = [
     },
     {
         id: 'e102',
-        subject: 'Promotion day!',
+        subject: 'Inbox > Promotion day!',
         body: 'Get the best deals',
         isRead: false,
         isStarred:true,
@@ -34,7 +34,7 @@ const emails = [
     },
     {
         id: 'e103',
-        subject: 'Order Received!',
+        subject: 'Inbox > Order Received!',
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
         isStarred:false,
@@ -43,10 +43,10 @@ const emails = [
         removeAt: null,
         from: 'Nike',
         to: 'momo@gmail.com'
-    }
+    },
     {
         id: 'e104',
-        subject: 'Order Received!',
+        subject: 'Inbox > Order Received!',
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
         isStarred:false,
@@ -55,10 +55,10 @@ const emails = [
         removeAt: null,
         from: 'Nike',
         to: 'momo@gmail.com'
-    }
+    },
     {
         id: 'e105',
-        subject: 'Order Received!',
+        subject: 'Sent Email - Order Received!',
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
         isStarred:true,
@@ -67,10 +67,10 @@ const emails = [
         removeAt: null,
         from: 'Nike',
         to: 'momo@gmail.com'
-    }
+    },
     {
         id: 'e106',
-        subject: 'Order Received!',
+        subject: 'Draft email - Order Received!',
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
         isStarred:false,
@@ -121,7 +121,7 @@ function addEmail(email) {
 
 function removeEmail(idx) {
     gEmails.splice(idx,1)
-    _saveEmails
+    _saveEmails()
     return Promise.resolve()    
 }   
 
@@ -131,7 +131,10 @@ function toggleMarkAsUnread(idx) {
 }
 
 function onToggleRead(emailId) {
-    getEmailById(emailId)
+    const idx = gEmails.findIndex(email=>email.id===emailId);
+    gEmails[idx].isRead=!gEmails[idx].isRead;
+    _saveEmails()
+    return Promise.resolve()
 }
 
 function _loadEmails() {
