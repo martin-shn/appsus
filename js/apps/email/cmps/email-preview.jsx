@@ -1,7 +1,7 @@
 import { emailsService } from "../service/email.service.js";
 
-export function EmailPreview({ email ,idx,onSelectEmail,reload }) {
-
+export function EmailPreview({ email ,idx,onSelectEmail,reload,folder }) {
+    
     return (
         <tr className="email-row">
                 <td>
