@@ -32,6 +32,8 @@ const emails = [
         subject: 'Order Received!',
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
+        isStarred: false,
+        folder: 'inbox',
         sentAt: 1551133930594,
         removeAt: null,
         from: 'Nike',
