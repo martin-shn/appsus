@@ -31,7 +31,7 @@
 
 .note ul{
     list-style-type: none;
-    padding-inline-start: 15px;
+    padding-inline-start: 0px;
 }
 
 .note ul li{
@@ -63,6 +63,14 @@
     color: #333;
     opacity: 0.3;
     transition: all 0.4s;
+}
+
+.note #title{
+    padding-top: 10px;
+}
+.note #label{
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .note .not-pinned:hover{

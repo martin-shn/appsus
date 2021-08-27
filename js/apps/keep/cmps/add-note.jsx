@@ -109,6 +109,7 @@ export class AddNote extends React.Component {
     };
 
     onUpdateTodos=(todos)=>{
+        if (!todos[todos.length-1]) return
         if (todos[todos.length-1].txt.trim()==='') todos.pop();
         this.setState({todos})
     }

@@ -110,7 +110,8 @@ export class NotePreview extends React.Component {
                 {note.type === 'note-img' && <img src={note.info.src} />}
                 {note.type === 'note-todos' && (
                     <React.Fragment>
-                        <p id="label" className={`${this.isLtr('label')?'ltr':'rtl'}`}>{note.info.label}</p>
+                        {!isEdit&&<p id="label" className={`${this.isLtr('label')?'ltr':'rtl'}`}  onClick={this.onEdit}>{note.info.label}</p>}
+                        {isEdit&&<input id="label" className={`${this.isLtr('label')?'ltr':'rtl'}`} value={note.info.label} onChange={this.handleChange}  onBlur={this.onEdit}/>}
                         <ul className={`${this.isLtr('todos')?'ltr':'rtl'}`}>{this.getTodoList(note.info.todos)}</ul>
                     </React.Fragment>
                 )}
