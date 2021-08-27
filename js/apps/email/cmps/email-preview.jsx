@@ -28,31 +28,19 @@ export function EmailPreview({ email, idx, onSelectEmail, reload, folder }) {
                     🗑
                 </button>
             </td>
-<<<<<<< HEAD
                 <td>
                     <button className="remove-email-btn" onClick={()=>onRemoveMail(reload,idx)}>🗑</button>
                 </td>
                 <td>
                     <button className="mark-unread-email-btn" onClick={()=>onMarkAsUnread(reload,idx,email)}>✉</button>
                 </td>
-=======
->>>>>>> f95db1ab4df059f2da4d1a83b376b74a3b5b1e02
         </tr>
     );
 }
 
-<<<<<<< HEAD
 function onRemoveMail(reload,idx) {
     emailsService.removeEmail(idx)
     .then(()=>reload())
-=======
-function onRemoveMail(reload, idx) {
-    emailsService.removeEmail(idx).then(() => reload());
-}
-
-function onReadClick(emailId,reload){
-    emailsService.onToggleRead(emailId).then(() => reload());
->>>>>>> f95db1ab4df059f2da4d1a83b376b74a3b5b1e02
 }
 
 function onMarkAsUnread(reload, idx,email) {
