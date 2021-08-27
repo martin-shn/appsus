@@ -5,12 +5,12 @@ export function EmailList({ onSelectEmail, emails,reload ,folder}) {
         <div className='email-list'>
             <table>
                 <thead>
-                    <tr>
+                    <tr className="header-row">
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th>from:</th>
-                    <th>title:</th>
+                    <th>From</th>
+                    <th>Title</th>
                     <th></th>
                     </tr>
                 </thead>

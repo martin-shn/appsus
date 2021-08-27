@@ -23,8 +23,17 @@
     background: rgba(242,245,245,0.8);
 }
 
+.email-list table{
+    border-collapse: collapse;
+}
+
+.email-list table tr.header-row{
+    border-bottom: 1px solid #333;
+}
 .email-list table th{
     text-align: left;
+    font-size: 0.8rem;
+    font-weight: 200;
 }
 
 .email-list td:nth-of-type(1){
@@ -49,7 +58,7 @@
 .remove-email-btn {
     border: none;
     background-color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background: none;
     /* display: none; */
 }
