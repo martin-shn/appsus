@@ -1,11 +1,12 @@
 export function EmailSideNav(){
 
         return(
-            <section>
-                <button>Inbox</button>
-                <button>Starred</button>
-                <button>Sent</button>
-                <button>Drufts</button>
+            <section className="email-side-nav">
+                <Link to="/mail/">All</Link>
+                <Link to="/mail/inbox">Inbox</Link>
+                <Link to="">Starred</Link>
+                <Link to="/mail/sent">Sent</Link>
+                <Link to="/mail/drafts">Drafts</Link>
             </section>
         )
     

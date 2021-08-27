@@ -15,6 +15,7 @@ export class EmailApp extends React.Component {
 
     componentDidMount() {
         this.loadEmails();
+        if(!this.props.match.params.folder) this.props.history.push('/email/inbox')
     }
 
     loadEmails = () => emailsService.query().then((res) => this.setState({ emails: res }));

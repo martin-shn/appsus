@@ -36,8 +36,7 @@ function onRemoveMail(reload,idx) {
     .then(()=>reload())
 }
 
-function onMarkAsUnread(reload, idx,email) {
-    emailsService.toggleMarkAsUnread(idx)
+function onReadClick(emailId, reload) {
+    emailsService.onToggleRead(emailId)
     .then(()=>reload())
-    console.log('email: ',email);
 }
