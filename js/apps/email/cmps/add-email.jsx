@@ -7,17 +7,9 @@ export class AddEmail extends React.Component {
         subject: '',
         body: '',
         isRead: false,
-        isStarred: false,
-        folder: '',
         sentAt: null,
         from: 'mahatmagandi@appsus.com',
         to: 'Mahatma Gandi'
-    }
-    timmer
-    componentDidMount() {
-        this.timmer = setInterval(() => {
-            this.setState(this.state.)
-        }, 1000)
     }
     
 
