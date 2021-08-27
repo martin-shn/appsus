@@ -3,6 +3,7 @@ import { EmailHeader } from '../cmps/email-header.jsx';
 import { EmailList } from '../cmps/email-list.jsx';
 import { AddEmail } from '../cmps/add-email.jsx';
 import {EmailDetails} from '../cmps/email-details.jsx'
+import { EmailSideNav } from '../cmps/email-side-nav.jsx';
 const { Route } = ReactRouterDOM;
 export class EmailApp extends React.Component {
     state = {
@@ -38,18 +39,22 @@ export class EmailApp extends React.Component {
         this.setState({emails:filteredEmails})
     }
 
+    reload=()=>{
+        this.loadEmails()
+    }
+
     render() {
         return (
             <React.Fragment>
                 {!this.state.currEmail && (
                     <React.Fragment>
                         <EmailHeader onSetFilter={this.onSetFilter}/>
-                        <EmailList onSelectEmail={this.onSelectEmail} emails={this.state.emails} />
+                        <EmailSideNav />
+                        <EmailList onSelectEmail={this.onSelectEmail} emails={this.state.emails} reload={this.reload} />
                     </React.Fragment>
                 )}
                 <button className="add-email-btn" onClick={this.onAddEmail} >+</button>
                 {this.state.sendEmail && <Route path='/email' component={AddEmail} />}
-                {console.log('hello',this.state.currEmail)}
                 {this.state.currEmail && <EmailDetails email={this.state.currEmail} dueFunc={this.onUnSelectEmail} />}
             </React.Fragment>
         )

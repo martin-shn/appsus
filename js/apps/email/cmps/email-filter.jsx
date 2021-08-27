@@ -23,7 +23,7 @@ export class EmailFilter extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <input className="search-im" type="search" name="from" placeholder="Search Mail" onChange={this.handleChange}></input>
+                <input className="search-input" type="search" name="from" placeholder="Search Mail" onChange={this.handleChange}></input>
             </React.Fragment>);
     }
 }

@@ -1,7 +1,6 @@
 import { emailsService } from "../service/email.service.js";
-const { Link } = ReactRouterDOM;
 
-export function EmailPreview({ email ,idx,onSelectEmail }) {
+export function EmailPreview({ email ,idx,onSelectEmail,reload }) {
 
     return (
         <tr className="email-row">
@@ -11,8 +10,8 @@ export function EmailPreview({ email ,idx,onSelectEmail }) {
                 <td role="button">
                     ★
                 </td>
-            <Link 
-            className={`clear-link logo-txt ${!email.isRead && 'un-read'}`} 
+            <td 
+            className={`logo-txt ${!email.isRead && 'un-read'}`} 
             onClick={() => {
                 emailsService.onToggleRead(email.id)
                 onSelectEmail(email)
@@ -20,13 +19,18 @@ export function EmailPreview({ email ,idx,onSelectEmail }) {
                 <td className="from">
                     {`${email.from}`}
                 </td>
-                <td>
+                <td className="subject">
                     {`${email.subject}`}
                 </td>
+            </td>
                 <td>
-                    {/* <button className="remove-email-btn" onClick={ () => emailsService.removeEmail(email.id,idx).then(()=>this.props.history.push('/email'))}>🗑</button> */}
+                    <button className="remove-email-btn" onClick={()=>onRemoveMail(reload,idx)}>🗑</button>
                 </td>
-            </Link>
         </tr>
     );
+}
+
+function onRemoveMail(reload,idx){
+    emailsService.removeEmail(idx)
+    .then(()=>reload())
 }

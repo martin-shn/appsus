@@ -33,6 +33,7 @@ const emails = [
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
         sentAt: 1551133930594,
+        removeAt: null,
         from: 'Nike',
         to: 'momo@gmail.com'
     }
@@ -75,10 +76,10 @@ function addEmail(email) {
     return Promise.resolve()
 }
 
-function removeEmail(emailId,idx) {
-    // const idx = gEmails.findIndex(email=>email.id===emailId);
+function removeEmail(idx) {
     gEmails.splice(idx,1)
     _saveEmails
+    return Promise.resolve()    
 }   
 
 function onToggleRead(emailId) {
