@@ -9,6 +9,11 @@
 }
 
 @font-face {
+    font-family: FA-Regular;
+    src: url(../fonts/fa-regular-400.ttf);
+}
+
+@font-face {
     font-family: Roboto-Medium;
     src:url(../fonts/Roboto-Medium.ttf)
 }
