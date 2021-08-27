@@ -25,7 +25,7 @@ export function App() {
                     {/* <Route path="/book/edit/:bookId?" component={BookEdit} /> */}
                     <Route path='/book/:bookId' component={BookDetails} />
                     {/* <Route path='/email/:emailId' component={EmailDetails} /> */}
-                    <Route path='/email' component={EmailApp} />
+                    <Route path='/email/:folder?' component={EmailApp} />
                     <Route path='/note' component={MissKeep} />
                     <Route path='/book' component={MissBooks} />
                     <Route path='/about' component={About} />

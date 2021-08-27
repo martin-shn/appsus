@@ -44,13 +44,14 @@ export class EmailApp extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <React.Fragment>
                 {!this.state.currEmail && (
                     <React.Fragment>
                         <EmailHeader onSetFilter={this.onSetFilter}/>
                         <EmailSideNav />
-                        <EmailList onSelectEmail={this.onSelectEmail} emails={this.state.emails} reload={this.reload} />
+                        <EmailList onSelectEmail={this.onSelectEmail} emails={this.state.emails} reload={this.reload} folder={this.props.match.params}/>
                     </React.Fragment>
                 )}
                 <button className="add-email-btn" onClick={this.onAddEmail} >+</button>
