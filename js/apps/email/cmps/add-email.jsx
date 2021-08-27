@@ -13,6 +13,10 @@ export class AddEmail extends React.Component {
     }
     
 
+    componentDidMount() {
+        
+    }
+    
     handleChange = (ev) => {
         // this.starField.current.checked=true
         
@@ -22,13 +26,16 @@ export class AddEmail extends React.Component {
     };
 
     onSaveEmail = (ev)=>{
-        const {subject, body, isRead, sentAt, from, to} = this.state
         ev.preventDefault()
+        const {subject, body, isRead, sentAt, from, to} = this.state
         const id = utilService.makeId();
         const messageToSave={id, subject, body, isRead, sentAt: new Date(), from, to};
         console.log('props: ',this.props);
         console.log('ev: ',ev);
-        emailsService.addEmail(messageToSave).then(()=>this.props.history.push(`/email`));
+        emailsService.addEmail(messageToSave).then(()=>{
+            clearInterval(blabla);
+            this.props.onClose();
+        });
         
     }
     
@@ -38,7 +45,7 @@ export class AddEmail extends React.Component {
             <div className="add-email">
                 <div>
                     <h2>New Message</h2>
-                    <button >x</button>
+                    <button className="add-email-close-btn"></button>
                 </div>
                 <form onSubmit={this.onSaveEmail}>
                     <input type="search" name="to" placeholder="To" value={this.state.to} onChange={this.handleChange} />
