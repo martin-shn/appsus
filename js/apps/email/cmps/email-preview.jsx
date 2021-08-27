@@ -23,17 +23,10 @@ export function EmailPreview({ email, idx, onSelectEmail, reload, folder }) {
                     onSelectEmail(email);
                 }}
             >{`${email.subject}`}</td>
-            <td>
-                <button className='remove-email-btn' onClick={() => onRemoveMail(reload, idx)}>
-                    🗑
-                </button>
-            </td>
                 <td>
                     <button className="remove-email-btn" onClick={()=>onRemoveMail(reload,idx)}>🗑</button>
                 </td>
-                <td>
-                    <button className="mark-unread-email-btn" onClick={()=>onMarkAsUnread(reload,idx,email)}>✉</button>
-                </td>
+               
         </tr>
     );
 }
