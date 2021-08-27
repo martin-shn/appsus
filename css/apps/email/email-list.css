@@ -73,7 +73,7 @@
 }
 
 .email-list table .isStarred::before{
-    font-family: Icons;
+    font-family: FA-Regular;
     content: '\f005';
 }
 
