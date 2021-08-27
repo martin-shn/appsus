@@ -15,6 +15,8 @@ const emails = [
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
+        isStarred:false,
+        folder: 'inbox',
         sentAt: 1551133930594,
         from: 'Lover',
         to: 'momo@gmail.com'
@@ -24,6 +26,8 @@ const emails = [
         subject: 'Promotion day!',
         body: 'Get the best deals',
         isRead: false,
+        isStarred:true,
+        folder: 'inbox',
         sentAt: 1551133930594,
         from: 'Best Buy',
         to: 'momo@momo.com'
@@ -33,8 +37,44 @@ const emails = [
         subject: 'Order Received!',
         body: 'Your order’s in. We’re working to get it packed up and out the door',
         isRead: false,
-        isStarred: false,
+        isStarred:false,
         folder: 'inbox',
+        sentAt: 1551133930594,
+        removeAt: null,
+        from: 'Nike',
+        to: 'momo@gmail.com'
+    }
+    {
+        id: 'e104',
+        subject: 'Order Received!',
+        body: 'Your order’s in. We’re working to get it packed up and out the door',
+        isRead: false,
+        isStarred:false,
+        folder: 'inbox',
+        sentAt: 1551133930594,
+        removeAt: null,
+        from: 'Nike',
+        to: 'momo@gmail.com'
+    }
+    {
+        id: 'e105',
+        subject: 'Order Received!',
+        body: 'Your order’s in. We’re working to get it packed up and out the door',
+        isRead: false,
+        isStarred:true,
+        folder: 'sent',
+        sentAt: 1551133930594,
+        removeAt: null,
+        from: 'Nike',
+        to: 'momo@gmail.com'
+    }
+    {
+        id: 'e106',
+        subject: 'Order Received!',
+        body: 'Your order’s in. We’re working to get it packed up and out the door',
+        isRead: false,
+        isStarred:false,
+        folder: 'drafts',
         sentAt: 1551133930594,
         removeAt: null,
         from: 'Nike',
