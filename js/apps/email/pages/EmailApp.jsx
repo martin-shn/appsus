@@ -48,6 +48,10 @@ export class EmailApp extends React.Component {
         this.loadEmails();
     };
 
+    onClose=()=>{
+        this.setState({sendEmail:null})
+    }
+    
     render() {
         console.log(this.props);
         return (
@@ -66,7 +70,7 @@ export class EmailApp extends React.Component {
                         </main>
                     </React.Fragment>
                 )}
-                <button className='add-email-btn' onClick={this.onAddEmail}>
+                <button className='add-email-btn' onClick={this.onAddEmail} onClose={this.onClose}>
                     +
                 </button>
                 {this.state.sendEmail && <Route path='/email' component={AddEmail} />}
