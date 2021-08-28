@@ -11,12 +11,22 @@ export class EmailApp extends React.Component {
         filter: null,
         currEmail: null,
         sendEmail: null,
+        folder:'inbox'
     };
 
     componentDidMount() {
         this.loadEmails();
         if (!this.props.match.params.folder) this.props.history.push('/email/inbox');
+        else this.setState({folder: this.props.match.params.folder}) 
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps!==this.props){
+            console.log(this.props);
+            this.setState({folder: this.props.match.params.folder})
+        }
+    }
+    
 
     loadEmails = () => emailsService.query().then((res) => this.setState({ emails: res }));
 
@@ -51,7 +61,18 @@ export class EmailApp extends React.Component {
     onClose=()=>{
         this.setState({sendEmail:null})
     }
-    
+
+    onOpenFull=(emailId)=>{
+        this.props.history.push(`/email/read/${emailId}`);
+    }
+
+    onReply=(emailId)=>{
+        this.props.history.push(`/email/edit/${emailId}?action=reply&father=${this.state.folder}`);
+    }
+    onForward=(emailId)=>{
+        this.props.history.push(`/email/edit/${emailId}?action=forward&father=${this.state.folder}`);
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -64,7 +85,10 @@ export class EmailApp extends React.Component {
                                 onSelectEmail={this.onSelectEmail}
                                 emails={this.state.emails}
                                 reload={this.reload}
-                                folder={this.props.match.params}
+                                folder={this.state.folder}
+                                onOpenFull={this.onOpenFull}
+                                onReply={this.onReply}
+                                onForward={this.onForward}
                             />
                         </main>
                     </React.Fragment>

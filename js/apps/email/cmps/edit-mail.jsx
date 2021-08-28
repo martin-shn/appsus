@@ -18,50 +18,63 @@ export class EditMail extends React.Component {
         const father = new URLSearchParams(this.props.location.search).get('father') || 'list';
         emailsService
             .getEmailById(emailId)
-            .then((email) => this.setState({ email,action, father }, () => {
+            .then((email) =>
+                this.setState({ email, action, father }, () => {
                     console.log('props:', this.props, 'action:', action, 'emailId:', emailId, 'father:', father);
 
                     if (action === 'reply') {
-                        this.setState({to:this.state.email.from,
-                            from:emailsService.getLoggedUser().email,
-                            subject:'Reply: ' + this.state.email.subject,
-                            body:`--------------\nReplied to ${this.state.email.from} at ${new Date().toLocaleString('en-GB')}\n\n` +
+                        this.setState({
+                            to: this.state.email.from,
+                            from: emailsService.getLoggedUser().email,
+                            subject: 'Reply: ' + this.state.email.subject,
+                            body:
+                                `--------------\nReplied to ${this.state.email.from} at ${new Date().toLocaleString('en-GB')}\n\n` +
                                 this.state.email.body +
                                 '\n--------------',
-                        })
-                        
+                        });
                     }
                     if (action === 'forward') {
-                        this.setState({from:emailsService.getLoggedUser().email,
+                        this.setState({
+                            from: emailsService.getLoggedUser().email,
                             subject: 'Forward: ' + this.state.email.subject,
-                            body:`--------------\nForwarded from ${this.state.email.from} at ${new Date().toLocaleString('en-GB')}\n\n` +
-                            this.state.email.body +
-                            '\n--------------',
-                        })
+                            body:
+                                `--------------\nForwarded from ${this.state.email.from} at ${new Date().toLocaleString('en-GB')}\n\n` +
+                                this.state.email.body +
+                                '\n--------------',
+                        });
                     }
-            }))
+                })
+            )
             .catch((err) => console.log('Error:', err));
     }
 
     handleChange = ({ target }) => {
-        this.setState({ [taget.id]: target.value });
+        this.setState({ [target.id]: target.value });
     };
-
-    onDelete = () => {};
 
     onBack = () => {
         console.log(this.state.father);
+
         if (this.state.father === 'list') this.props.history.push('/email/inbox');
-        if (this.state.father === 'details') this.props.history.push(`/email/read/${this.state.email.id}`);
+        else if (this.state.father === 'details') this.props.history.push(`/email/read/${this.state.email.id}`);
+        else this.props.history.push(`/email/${this.state.father}`);
     };
 
-    onSend = () => {};
+    onSend = () => {
+        let email = {};
+        // let email = JSON.parse(JSON.stringify(this.state.email));
+        email.to = this.state.to;
+        email.from = this.state.from;
+        email.subject = this.state.subject;
+        email.body = this.state.body;
+        emailsService.addEmail(email).then(()=>this.onBack());
+    };
 
     render() {
-        console.log('render:',this.state)
+        console.log('render:', this.state);
         return (
             <React.Fragment>
-                <ToolBar onDelete={this.onDelete} onBack={this.onBack} onSend={this.onSend} />
+                <ToolBar onCancel={this.onBack} onBack={this.onBack} onSend={this.onSend} />
                 <label htmlFor='from'>From:</label>
                 <input id='from' type='text' value={this.state.from} onChange={this.handleChange} />
                 <label htmlFor='to'>To:</label>

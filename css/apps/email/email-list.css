@@ -94,3 +94,7 @@
     font-family: Icons;
     content: '\f1f8';
 }
+
+.email-list .InListEmailPreview{
+    white-space: pre-wrap;
+}

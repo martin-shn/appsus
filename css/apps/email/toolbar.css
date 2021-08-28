@@ -1,0 +1,39 @@
+#back-btn::before{
+    font-family: Icons;
+    content: '\f0a8';
+}
+
+#send-btn::before{
+    font-family: Icons;
+    content: '\f1d8';
+}
+
+#open-btn::before{
+    font-family: Icons;
+    content: '\f518';
+}
+
+#reply-btn::before{
+    font-family: Icons;
+    content: '\f3e5';
+}
+
+#forward-btn::before{
+    font-family: Icons;
+    content: '\f064';
+}
+
+#delete-btn::before{
+    font-family: Icons;
+    content: '\f2ed';
+}
+
+#mark-btn::before{
+    font-family: Icons;
+    content: '\f0e0';
+}
+
+#cancel-btn::before{
+    font-family: Icons;
+    content: '\f057';
+}

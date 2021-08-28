@@ -1,4 +1,5 @@
 import { storageService } from "../../../services/storage.service.js"
+import { utilService } from '../../../services/util.service.js';
 
 export const emailsService = {
     query,
@@ -74,7 +75,7 @@ const emails = [
     {
         id: 'e106',
         subject: 'Draft email - Order Received!',
-        body: 'Your order’s in. We’re working to get it packed up and out the door',
+        body: 'Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, Your order’s in. We’re working to get it packed up and out the door, ',
         isRead: false,
         isStarred:false,
         folder: 'drafts',
@@ -125,6 +126,12 @@ function getEmailById(emailId) {
 }
 
 function addEmail(email) {
+    email.id=utilService.makeId()
+    email.isRead= false;
+    email.isStarred=false;
+    email.folder= 'sent';
+    email.sentAt= Date.now();
+    email.removeAt= null;
     gEmails.push(email)
     _saveEmails()
     return Promise.resolve()
