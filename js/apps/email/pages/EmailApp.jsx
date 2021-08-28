@@ -69,10 +69,10 @@ export class EmailApp extends React.Component {
                         </main>
                     </React.Fragment>
                 )}
-                <button className='add-email-btn' onClick={this.onAddEmail} onClose={this.onClose}>
+                <button className='add-email-btn' onClick={this.onAddEmail}>
                     +
                 </button>
-                {this.state.sendEmail && <Route path='/email' component={AddEmail} />}
+                {this.state.sendEmail && <AddEmail  onClose={this.onClose}/>}
                 {this.state.currEmail && <EmailDetails email={this.state.currEmail} dueFunc={this.onUnSelectEmail} />}
             </React.Fragment>
         );

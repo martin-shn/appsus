@@ -12,3 +12,5 @@ export function EmailSideNav({onFilterStarred,onClearStarred}) {
         </section>
     );
 }
+
+
