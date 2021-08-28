@@ -23,6 +23,26 @@
     grid-template-rows: 4rem 3rem 3rem 2rem 1fr 3rem 3rem 2rem 1fr 4rem;
     align-items: center;
 }
+
+.books-header {
+    background-color: rgb(255, 186, 0, 1);
+    display: flex;
+    align-items: center;
+    height: 47px;
+    width: 770px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.sides-header-background{
+    background-color: rebeccapurple;
+    height: 60px;
+}
+
+.google-search {
+    margin: auto;
+}
+
 .book-details h1,
 .book-details h2,
 .book-details h3,

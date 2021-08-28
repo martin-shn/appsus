@@ -34,8 +34,12 @@ export class MissBooks extends React.Component {
             <React.Fragment>
                 {!this.state.currBook && (
                     <React.Fragment>
+                        <div className="sides-header-background">
+                            <div className="books-header">
+                                <AddBook dueFunc={this.loadBooks} />
+                            </div>
+                        </div>
                         <BookFilter onSetFilter={this.onSetFilter} />
-                        <AddBook dueFunc={this.loadBooks}/>
                         <BookList onSelectBook={this.onSelectBook} books={this.state.books} />
                     </React.Fragment>
                 )}

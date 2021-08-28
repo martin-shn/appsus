@@ -9,7 +9,7 @@ class _AppHeader extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Link to='/'><img className="logo" src="../css/img/logo.jpg"/></Link>
+                <Link to='/'><img className="logo" src="../css/img/appLogo.png"/></Link>
                 <nav>
                     <NavLink activeClassName="my-active" exact to="/" >Home</NavLink>
                     <NavLink to="/email" >Miss Emails</NavLink>
