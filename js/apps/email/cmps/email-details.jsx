@@ -1,4 +1,6 @@
-import { emailsService } from '../service/email.service.js'
+import { emailsService } from '../service/email.service.js';
+import { ToolBar } from './toolbar.jsx';
+
 export class EmailDetails extends React.Component {
     state = {
         email: {
@@ -8,7 +10,7 @@ export class EmailDetails extends React.Component {
             isRead: false,
             sentAt: 1551133930594,
             from: 'Best Buy',
-            to: 'momo@momo.com'
+            to: 'momo@momo.com',
         },
     };
 
@@ -28,28 +30,59 @@ export class EmailDetails extends React.Component {
         //     if (!email) this.props.history.push('/email');
         //     this.setState({ email });
         // });
-        this.setState({email:this.props.email})
+        // this.setState({ email: this.props.email });
+        const { emailId } = this.props.match.params;
+        emailsService.getEmailById(emailId).then((email) => {
+            this.setState({ email });
+        });
     };
 
-    onBtn=()=>{
-        this.props.dueFunc()
-    }
+    onBack = () => {
+        this.props.history.push('/email/inbox');
+    };
+
+    onReply = () => {
+        this.props.history.push(`/email/edit/${this.state.email.id}?action=reply&father=details`);
+    };
+
+    onForward = () => {
+        this.props.history.push(`/email/edit/${this.state.email.id}?action=forward&father=details`);
+    };
+
+    onDelete = () => {
+        emailsService.removeEmail(this.state.email.id).then(() => this.props.history.push('/mail/inbox'));
+    };
+
+    onMark = () => {
+        emailsService.onToggleRead(this.state.email.id);
+    };
+
     render() {
-        console.log('curremail',this.props.email);
-        const { email } = this.state
+        const { email } = this.state;
         // if (!email) return <React.Frafmant></React.Frafmant>
-        email.isRead = true
+        email.isRead = true;
         return (
-            <table className="email-details">
-                
-                <button onClick={this.onBtn}>⬅</button>
-                    <thead><tr><td></td></tr></thead>
-                <tbody>
-                <tr className="email-subject"><td className="details-body">Subject: {email.subject}</td></tr>
-                <tr><td className="details-body">From: {email.from}</td></tr>
-                <tr><td className="details-body">Message: {email.body}</td></tr>
-                </tbody>
-            </table>
-        )
+            <React.Fragment>
+                <ToolBar onBack={this.onBack} onReply={this.onReply} onForward={this.onForward} onDelete={this.onDelete} onMark={this.onMark} />
+                <table className='email-details'>
+                    <thead>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className='email-subject'>
+                            <td className='details-body'>Subject: {email.subject}</td>
+                        </tr>
+                        <tr>
+                            <td className='details-body'>From: {email.from}</td>
+                        </tr>
+                        <tr>
+                            <td className='details-body'>Message: {email.body}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </React.Fragment>
+        );
     }
 }

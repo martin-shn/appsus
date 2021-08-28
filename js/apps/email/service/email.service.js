@@ -8,7 +8,8 @@ export const emailsService = {
     onToggleRead,
     // toggleMarkAsUnread,
     getStarredEmails,
-    onToggleStarred
+    onToggleStarred,
+    getLoggedUser
 }
 
 const emails = [
@@ -107,6 +108,10 @@ function query(filterInput) {
     } else return Promise.resolve(gEmails);
 }
 
+function getLoggedUser(){
+    return loggedInUser;
+}
+
 function getStarredEmails(){
     const starredEmails = gEmails.filter(email=>email.isStarred)
     return Promise.resolve(starredEmails)
@@ -125,7 +130,8 @@ function addEmail(email) {
     return Promise.resolve()
 }
 
-function removeEmail(idx) {
+function removeEmail(emailId) {
+    const idx = gEmails.findIndex(email=>email.id===emailId);
     gEmails.splice(idx,1)
     _saveEmails()
     return Promise.resolve()    
