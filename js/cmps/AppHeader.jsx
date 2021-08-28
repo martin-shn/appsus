@@ -13,7 +13,7 @@ class _AppHeader extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Link to='/'><img className="logo" src="../css/img/appLogo.png"/></Link>
+                <Link to='/'><img className="logo" src="./css/img/appLogo.png"/></Link>
                 <nav className={`${this.state.isOpen?'open':'closed'}`}>
                     <NavLink activeClassName="my-active" exact to="/" >Home</NavLink>
                     <NavLink to="/email" >Miss Emails</NavLink>
