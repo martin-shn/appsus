@@ -77,6 +77,14 @@
     width: 25px;
 }
 
+.email-list [colspan='6'] button::before{
+    margin-right: 5px;
+}
+.email-list [colspan='6'] button{
+    margin-right: 5px;
+    height: 1.5rem;
+}
+
 .remove-email-btn {
     border: none;
     background-color: #fff;
