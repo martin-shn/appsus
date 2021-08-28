@@ -12,6 +12,8 @@
 
 .email-list table tr {
     width: 100%;
+    background-color: rgba(242,245,245,0.8);
+    color: #202124  ;
 }
 
 .email-row {
@@ -36,8 +38,11 @@
 }
 
 .email-list table tr:hover{
-    background-color: #01b5f0;
+    /* background-color: #01b5f0; */
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    z-index: 2;
 }
+
 .email-list table th{
     text-align: left;
     font-size: 0.8rem;
