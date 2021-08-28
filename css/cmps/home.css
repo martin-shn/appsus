@@ -10,3 +10,132 @@
     width: 40vw;
     height: unset;
 }
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    
+    .hamburger {
+        display: inline-block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        height: 20px;
+        width: 20px;
+        z-index: 11;
+        cursor: pointer;
+    }
+
+    .hamburger::before {
+        font-family: Icons;
+        content: '\f00d';
+        color: whitesmoke;
+    }
+    .hamburger.closed::before {
+        font-family: Icons;
+        content: '\f0c9';
+        color: whitesmoke;
+    }
+
+    header > nav.closed {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: fixed;
+        right: 0;
+        top: 0;
+        background-color: #333;
+        padding: 40px 15px;
+        line-height: 2.5rem;
+        z-index: 10;
+        box-shadow: -5px 0px 15px 0px #333;
+        transform: translateX(110%);
+        transition: all 0.4s;
+        }
+
+        header > nav.open {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: fixed;
+        right: 0;
+        top: 0;
+        background-color: #333;
+        padding: 40px 15px;
+        line-height: 2.5rem;
+        z-index: 10;
+        box-shadow: -5px 0px 15px 0px #333;
+        transform: translateX(0%);
+        transition: all 0.4s;
+    }
+
+    .note-list {
+        column-count: 2!important;
+    }
+
+    .filter-form #filter-text{
+        width: 100%!important;
+    }
+
+    .filter-form .filter-type-btns{
+        width:unset!important;
+    }
+
+    .pinned-notes .note{
+        width: 30vw!important;
+    }
+
+    .search-input{
+        width: 75%!important;
+    }
+    .email-list td{
+        font-size: 0.6rem;
+    }
+    .email-side-nav{
+        font-size: 0.7rem;
+    }
+    .toolbar button{
+        font-size: 0.6rem;
+    }
+    .add-email,.add-note{
+        width: 75vw!important;
+    }
+
+    .add-note .type-btns{
+        position: absolute!important;
+    bottom: 0!important;
+    width: 90%!important;
+    }
+
+    .book-list{
+        gap: 10px!important;
+    }
+    
+    .book-list a{
+        margin-bottom: 10px!important;
+    }
+
+    .book-list .book-preview{
+        width: 35vw!important;
+    }
+
+    .book-filter-form input:first-child{
+        width: 80%!important;
+        margin:0!important;
+    }
+    .book-filter-form input:nth-child(2),.book-filter-form input:nth-child(3){
+        width: 37%!important;
+        margin:5px 0!important;
+    }
+
+    .about{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .home{
+        padding: 15px;
+    }
+}
