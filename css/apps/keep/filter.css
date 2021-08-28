@@ -1,7 +1,9 @@
 .filter-form{
-    margin-top: 20px;
+    /* margin-top: 20px; */
     padding: 0 25px;
     margin-bottom: 0;
+    background-color: #01b5f0;
+    height: 55px;
 }
 
 .filter-form .filter-type-btns {
@@ -9,7 +11,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
+    color: #01b5f0;
     font-size: 2rem;
 }
 
@@ -31,6 +33,7 @@
 .filter-form #note-txt::before {
     font-family: Icons;
     content: '\f15c';
+    color: #606e83;
 }
 .filter-form #note-img:hover {
     text-shadow: -1px 1px 5px #333;
@@ -38,6 +41,7 @@
 .filter-form #note-img::before {
     font-family: Icons;
     content: '\f03e';
+    color: #606e83;
 }
 .filter-form #note-todos:hover {
     text-shadow: -1px 1px 5px #333;
@@ -45,6 +49,7 @@
 .filter-form #note-todos::before {
     font-family: Icons;
     content: '\f022';
+    color: #606e83;
 }
 .filter-form #note-video:hover {
     text-shadow: -1px 1px 5px #333;
@@ -52,6 +57,7 @@
 .filter-form #note-video::before {
     font-family: Icons;
     content: '\f1c8';
+    color: #606e83;
 }
 .filter-form #note-audio:hover {
     text-shadow: -1px 1px 5px #333;
@@ -59,6 +65,7 @@
 .filter-form #note-audio::before {
     font-family: Icons;
     content: '\f1c7';
+    color: #606e83;
 }
 .filter-form #clear:hover {
     text-shadow: -1px 1px 5px #333;
@@ -66,5 +73,21 @@
 .filter-form #clear::before {
     font-family: Icons;
     content: '\f51a';
+    color: #606e83;
 }
 
+.filter-form #filter-text {
+    margin: auto;
+    width: 300px;
+    /* border: none; */
+    padding: 0.5rem 5px;
+    flex-grow: unset;
+    color: #606e83;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: rgba(241,243,244,0.24);
+    transition: all 100ms ease-in,width 100ms ease-out;
+    transition-duration: 100ms, 100ms;
+    transition-timing-function: ease-in, ease-out;
+    transition-delay: 0s, 0s;
+}

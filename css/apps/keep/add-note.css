@@ -70,17 +70,21 @@
     content: '\f00d';
 }
 
-.add-not .close-btn {
+.add-note .close-btn {
     border: 0;
-    width: 20px;
-    height: 20px;
     cursor: pointer;
-    position: relative;
-    right: calc(-100% + 35px);
+    /* position: relative; */
+    /* right: calc(-100% + 35px); */
     top: 8px;
     background: transparent;
     color: #b6b6b6;
     font-size: .875rem;
+    height: 20px;
+    width: 20px;
+    /* z-index: 100; */
+    /* color: #fff; */
+    position: absolute;
+    right: 20px;
 }
 
 .add-note-btn{
