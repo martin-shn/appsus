@@ -39,6 +39,10 @@
     height: 60px;
 }
 
+.google-search {
+    margin: auto;
+}
+
 .book-details h1,
 .book-details h2,
 .book-details h3,
