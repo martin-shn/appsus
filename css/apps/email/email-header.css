@@ -6,27 +6,29 @@
     background-color: rgb(255, 186, 0, 1);
     display: flex;
     align-items: center;
-    height: 55px;
+    height: 47px;
+    width: 770px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.sides-header-background{
+    background-color: rebeccapurple;
+    height: 60px;
 }
 
 .email-header :last-of-type {
     justify-content: center;
 }
 
-.email-header svg {
-    height: 20px;
-    width: 30px;
-    margin-left: 20px;
-}
-
 .email-header a {
     display: flex;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 .email-header .logo {
-    width: 40px;
+    width: 25px;
     margin-right: 10px;
 }
 

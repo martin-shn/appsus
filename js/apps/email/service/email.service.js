@@ -129,7 +129,7 @@ function addEmail(email) {
     email.id=utilService.makeId()
     email.isRead= false;
     email.isStarred=false;
-    email.folder= 'sent';
+    if(!email.folder) email.folder= 'sent';
     email.sentAt= Date.now();
     email.removeAt= null;
     gEmails.push(email)
@@ -138,6 +138,13 @@ function addEmail(email) {
 }
 
 function removeEmail(emailId) {
+    const idx = gEmails.findIndex(email=>email.id===emailId);
+    gEmails[idx].folder='deleted';
+    gEmails[idx].removeAt=Date.now();
+    _saveEmails()
+    return Promise.resolve()    
+}   
+function purgeEmails() {
     const idx = gEmails.findIndex(email=>email.id===emailId);
     gEmails.splice(idx,1)
     _saveEmails()
@@ -164,6 +171,10 @@ function _loadEmails() {
         gEmails = emails
         _saveEmails()
     }
+
+    gEmails.forEach((email,idx)=>{
+        if(email.removeAt+1000*60*60*24*30>Date.now()) gEmails.splice(idx,1);
+    })
 }
 
 function _saveEmails() {

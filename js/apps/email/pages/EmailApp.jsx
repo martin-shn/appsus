@@ -78,7 +78,9 @@ export class EmailApp extends React.Component {
             <React.Fragment>
                 {!this.state.currEmail && (
                     <React.Fragment>
+                        <div className="sides-header-background">
                         <EmailHeader onSetFilter={this.onSetFilter} />
+                        </div>
                         <main className='main-container'>
                             <EmailSideNav onFilterStarred={this.onFilterStarred} onClearStarred={this.loadEmails} />
                             <EmailList
