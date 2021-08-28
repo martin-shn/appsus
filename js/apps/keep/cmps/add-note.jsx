@@ -129,7 +129,7 @@ export class AddNote extends React.Component {
                         <button className="close-btn" onClick={this.closeAddNote}>x</button>
                         <h2 className="main-title">New Note</h2>
                         </div>
-                        <button className="save-btn" onClick={this.saveNote}>Save</button>
+                        
                         <input className="note-title"
                             type='text'
                             id='title'
@@ -141,7 +141,7 @@ export class AddNote extends React.Component {
                         />
                         {note.type === 'note-txt' && (
                             <React.Fragment>
-                                <label>Image URL:</label>
+                                <label>Note Text:</label>
                                 <textarea className="note-text-area" id='txt' name='txt' onChange={this.handleChange} value={note.txt} placeholder='Note goes here' />
                             </React.Fragment>
                         )}
@@ -198,6 +198,7 @@ export class AddNote extends React.Component {
                             </div>
                         )}
                         <div className='type-btns'>
+                            <button className="save-btn" onClick={this.saveNote}>Save</button>
                             <div id='note-txt' title='Text' onClick={this.onBtn}></div>
                             <div id='note-img' title='Image' onClick={this.onBtn}></div>
                             <div id='note-todos' title="Todo's" onClick={this.onBtn}></div>

@@ -12,6 +12,40 @@ export const keepService = {
 
 const notes = [
     {
+        "id": "wFS9B",
+        "type": "note-todos",
+        "isPinned": false,
+        "style": {
+            "backgroundColor": "#f94144"
+        },
+        "info": {
+            "title": "קניות לשבת",
+            "label": "מבצעים בשופרסל",
+            "todos": [
+                {
+                    "txt": "חלב",
+                    "doneAt": null,
+                    "id": "pZt01"
+                },
+                {
+                    "txt": "לחם",
+                    "doneAt": null,
+                    "id": "8S8kE"
+                },
+                {
+                    "txt": "סוכר",
+                    "doneAt": null,
+                    "id": "0pTxv"
+                },
+                {
+                    "txt": "מלח",
+                    "doneAt": null,
+                    "id": "3OvtE"
+                }
+            ]
+        }
+    },
+    {
         "id": "n101",
         "type": "note-txt",
         "isPinned": true,
@@ -77,33 +111,38 @@ const notes = [
     {
         "id": "n106",
         "type": "note-audio",
+        "style": {
+            "backgroundColor": "#A0C4FF"
+        },
         "info": {
             "title": "Lets hear audio",
             "src": "https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav"
         }
     },
     {
-        "id": "n101",
+        "id": "n10111",
         "type": "note-txt",
         "isPinned": true,
-        "info": {
-            "txt": "Fullstack Me Baby!",
-            "title": "tets"
-        }
-    },
-    {
-        "id": "n102",
-        "type": "note-img",
-        "info": {
-            "url": "http://some-img/me",
-            "title": "Bobi and Me"
-        },
         "style": {
-            "backgroundColor": "#00d"
+            "backgroundColor": "#FFFFFC"
+        },
+        "info": {
+            "title": "tets",
+            "txt": "Fullstack Me Baby!"
         }
     },
     {
-        "id": "n103",
+        "id": "n10211",
+        "type": "note-img",
+        "style": {
+            "backgroundColor": "#FFADAD"
+        },
+        "info": {
+            "title": "Bobi and Me"
+        }
+    },
+    {
+        "id": "n103fgfd",
         "type": "note-todos",
         "info": {
             "label": "Get my stuff together",
@@ -122,7 +161,7 @@ const notes = [
         }
     },
     {
-        "id": "n104",
+        "id": "n10443",
         "type": "note-video",
         "info": {
             "title": "Some video",
@@ -130,15 +169,18 @@ const notes = [
         }
     },
     {
-        "id": "n105",
+        "id": "n105gt453",
         "type": "note-video",
+        "style": {
+            "backgroundColor": "#FFD6A5"
+        },
         "info": {
             "title": "Youtube video",
             "src": "https://www.youtube.com/embed/IdqRXjCpFJk"
         }
     },
     {
-        "id": "n106",
+        "id": "n106g45",
         "type": "note-audio",
         "info": {
             "title": "Lets hear audio",
@@ -146,16 +188,19 @@ const notes = [
         }
     },
     {
-        "id": "n101",
+        "id": "n10145tg",
         "type": "note-txt",
         "isPinned": true,
+        "style": {
+            "backgroundColor": "#FFD6A5"
+        },
         "info": {
-            "txt": "Fullstack Me Baby!",
-            "title": "tets"
+            "title": "tets",
+            "txt": "Fullstack Me Baby!"
         }
     },
     {
-        "id": "n102",
+        "id": "n102fg45",
         "type": "note-img",
         "info": {
             "url": "http://some-img/me",
@@ -166,8 +211,11 @@ const notes = [
         }
     },
     {
-        "id": "n103",
+        "id": "n103fdsz",
         "type": "note-todos",
+        "style": {
+            "backgroundColor": "#FFC6FF"
+        },
         "info": {
             "label": "Get my stuff together",
             "todos": [
@@ -185,15 +233,18 @@ const notes = [
         }
     },
     {
-        "id": "n104",
+        "id": "n103234",
         "type": "note-video",
+        "style": {
+            "backgroundColor": "#FDFFB6"
+        },
         "info": {
             "title": "Some video",
             "src": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
         }
     },
     {
-        "id": "n105",
+        "id": "n10rffg5",
         "type": "note-video",
         "info": {
             "title": "Youtube video",
@@ -201,8 +252,11 @@ const notes = [
         }
     },
     {
-        "id": "n106",
+        "id": "n10grtgyh6",
         "type": "note-audio",
+        "style": {
+            "backgroundColor": "#FDFFB6"
+        },
         "info": {
             "title": "Lets hear audio",
             "src": "https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav"
