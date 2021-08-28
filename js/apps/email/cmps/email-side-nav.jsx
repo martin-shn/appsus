@@ -9,6 +9,7 @@ export function EmailSideNav({onFilterStarred,onClearStarred}) {
             <NavLink exact strict to='/email' onClick={()=>onFilterStarred()}>Starred</NavLink>
             <NavLink to='/email/sent' onClick={()=>onClearStarred()}>Sent</NavLink>
             <NavLink to='/email/drafts' onClick={()=>onClearStarred()}>Drafts</NavLink>
+            <NavLink to='/email/deleted' onClick={()=>onClearStarred()}>Deleted</NavLink>
         </section>
     );
 }

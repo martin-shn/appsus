@@ -37,3 +37,13 @@
     font-family: Icons;
     content: '\f057';
 }
+
+#undelete-btn::before{
+    font-family: Icons;
+    content: '\f82a';
+}
+
+#save-btn::before{
+    font-family: Icons;
+    content: '\f0c7';
+}

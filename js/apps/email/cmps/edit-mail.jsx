@@ -14,6 +14,7 @@ export class EditMail extends React.Component {
 
     componentDidMount() {
         const { emailId } = this.props.match.params;
+        this.setState({emailId})
         const action = new URLSearchParams(this.props.location.search).get('action');
         const father = new URLSearchParams(this.props.location.search).get('father') || 'list';
         emailsService
@@ -43,6 +44,14 @@ export class EditMail extends React.Component {
                                 '\n--------------',
                         });
                     }
+                    if (action === 'edit') {
+                        this.setState({
+                            to: this.state.email.to,
+                            from: this.state.email.from,
+                            subject: this.state.email.subject,
+                            body: this.state.email.body,
+                        });
+                    }
                 })
             )
             .catch((err) => console.log('Error:', err));
@@ -62,19 +71,34 @@ export class EditMail extends React.Component {
 
     onSend = () => {
         let email = {};
-        // let email = JSON.parse(JSON.stringify(this.state.email));
+        email.id=this.state.emailId;
         email.to = this.state.to;
         email.from = this.state.from;
         email.subject = this.state.subject;
         email.body = this.state.body;
-        emailsService.addEmail(email).then(()=>this.onBack());
+        email.sentAt=Date.now();
+        email.folder='sent';
+        emailsService.updateEmail(email).then(()=>this.onBack());
     };
+
+    onSave=()=>{
+        let email = {};
+        if(this.state.email.folder==='drafts') email.id=this.state.emailId
+        else email.id=null;
+        email.to = this.state.to;
+        email.from = this.state.from;
+        email.subject = this.state.subject;
+        email.body = this.state.body;
+        email.folder='drafts';
+        emailsService.updateEmail(email).then(()=>this.onBack());
+
+    }
 
     render() {
         console.log('render:', this.state);
         return (
             <React.Fragment>
-                <ToolBar onCancel={this.onBack} onBack={this.onBack} onSend={this.onSend} />
+                <ToolBar onSave={this.onSave} onBack={this.onBack} onSend={this.onSend} />
                 <label htmlFor='from'>From:</label>
                 <input id='from' type='text' value={this.state.from} onChange={this.handleChange} />
                 <label htmlFor='to'>To:</label>

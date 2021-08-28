@@ -11,22 +11,21 @@ export class EmailApp extends React.Component {
         filter: null,
         currEmail: null,
         sendEmail: null,
-        folder:'inbox'
+        folder: 'inbox',
     };
 
     componentDidMount() {
         this.loadEmails();
         if (!this.props.match.params.folder) this.props.history.push('/email/inbox');
-        else this.setState({folder: this.props.match.params.folder}) 
+        else this.setState({ folder: this.props.match.params.folder });
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps!==this.props){
+        if (prevProps !== this.props) {
             console.log(this.props);
-            this.setState({folder: this.props.match.params.folder})
+            this.setState({ folder: this.props.match.params.folder });
         }
     }
-    
 
     loadEmails = () => emailsService.query().then((res) => this.setState({ emails: res }));
 
@@ -58,22 +57,31 @@ export class EmailApp extends React.Component {
         this.loadEmails();
     };
 
-    onClose=()=>{
-        this.setState({sendEmail:null})
-    }
+    onClose = () => {
+        this.setState({ sendEmail: null });
+    };
 
-    onOpenFull=(emailId)=>{
-        this.props.history.push(`/email/read/${emailId}`);
-    }
+    onOpenFull = (emailId) => {
+        if (this.state.folder==='drafts') this.props.history.push(`/email/edit/${emailId}?action=edit&father=${this.state.folder}`);
+        else this.props.history.push(`/email/read/${emailId}`);
+    };
 
-    onReply=(emailId)=>{
+    onReply = (emailId) => {
         this.props.history.push(`/email/edit/${emailId}?action=reply&father=${this.state.folder}`);
-    }
-    onForward=(emailId)=>{
+    };
+    onForward = (emailId) => {
         this.props.history.push(`/email/edit/${emailId}?action=forward&father=${this.state.folder}`);
+    };
+
+    onSend=(email)=>{
+        email.folder='sent'
+        email.sentAt=Date.now()
+
+        emailsService.updateEmail(email).then(()=>this.reload())
     }
 
     render() {
+        console.log('render',this.state.emails);
         return (
             <React.Fragment>
                 {!this.state.currEmail && (
@@ -89,6 +97,7 @@ export class EmailApp extends React.Component {
                                 onOpenFull={this.onOpenFull}
                                 onReply={this.onReply}
                                 onForward={this.onForward}
+                                onSend={this.onSend}
                             />
                         </main>
                     </React.Fragment>
@@ -96,7 +105,7 @@ export class EmailApp extends React.Component {
                 <button className='add-email-btn' onClick={this.onAddEmail}>
                     +
                 </button>
-                {this.state.sendEmail && <AddEmail  onClose={this.onClose}/>}
+                {this.state.sendEmail && <AddEmail onClose={this.onClose} reload={this.reload} />}
                 {this.state.currEmail && <EmailDetails email={this.state.currEmail} dueFunc={this.onUnSelectEmail} />}
             </React.Fragment>
         );
