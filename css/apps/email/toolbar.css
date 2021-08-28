@@ -1,3 +1,21 @@
+.toolbar{
+    display: flex;
+}
+
+.app>.toolbar div:nth-of-type(1){
+    flex-grow: 1;
+}
+
+.toolbar button:hover{
+    text-shadow: 0 0 3px #333;
+}
+.toolbar button{
+    background: #fcc83b;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 0 3px #333;
+}
+
 #back-btn::before{
     font-family: Icons;
     content: '\f0a8';

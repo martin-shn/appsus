@@ -1,0 +1,33 @@
+.edit-mail .toolbar {
+    margin: 0;
+    padding: 15px;
+    background-color: #ffba00;
+}
+
+.edit-mail .toolbar div:first-child {
+    flex-grow: 1;
+}
+
+.edit-mail .toolbar button {
+    margin-right: 5px;
+    background: #fcc83b;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 0 3px #333;
+}
+
+.edit-mail .edit-form{
+    display:flex;
+    flex-direction: column;
+    padding: 15px;
+    height: 70vh;
+}
+
+.edit-mail .edit-form input{
+    margin: 5px 0 15px;
+}
+
+.edit-mail .edit-form textarea{
+    flex-grow: 1;
+    resize:none
+}
