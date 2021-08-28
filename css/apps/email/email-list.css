@@ -1,8 +1,10 @@
 .email-list {
     width: 100%;
+    min-height: 70vh;
     box-shadow:  0 -1px 0 0 rgb(100 121 143 / 12%);
     background-color: rgba(242,245,245,0.8);
     color: #202124;
+    padding-right: 15px;
 }
 
 .email-list table {
@@ -67,10 +69,10 @@
     width: 25px;
 }
 .email-list thead th:nth-of-type(4){
-    width: 20%;
+    width: 30%;
 }
 .email-list thead th:nth-of-type(5){
-    width: 80%;
+    width: 70%;
     padding-left: 20px;
 }
 
