@@ -1,9 +1,8 @@
 
 .google-search{
-    /* display: grid; */
     grid-template-areas: 'lbl input btn'
     '. results .';
-
+    margin: auto;
     grid-template-columns: 4rem 100px 4rem;
     grid-template-rows: 2rem 1fr;
 
@@ -27,6 +26,7 @@
     border-radius: 5px;
     border: 0;
     box-shadow: 0 0 3px #333;
+    margin-left: 5px;
 }
 
 .google-search form{

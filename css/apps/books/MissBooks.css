@@ -1,8 +1,20 @@
-.filter-form {
+.book-filter-form {
     margin-bottom: 15px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.book-filter-btn {
+    margin: 10px 20px;
+    border: none;
+    background-color: inherit;
+    color: #606e83;
+}
+
+.book-filter-btn::after {
+    font-family: Icons;
+    content: '\f0b0';
 }
 
 .filter-form h4 {
@@ -26,6 +38,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 15px;
+    text-decoration: none;
+    padding: 0 20px;
 }
 .book-preview {
     display: flex;
@@ -37,6 +51,7 @@
     padding: 5px 10px;
     height: 100%;
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .book-preview label {

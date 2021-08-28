@@ -9,7 +9,7 @@ export class EmailHeader extends React.Component {
     render(){
         return(
             <div className="email-header">
-               <Link className="clear-link" to='/'><img className="logo" src="../../../../css/img/mister-email/email-logo.png"/>SusMail</Link>
+               <Link className="clear-link email-home-link" to='/email'></Link>
                <EmailFilter onSetFilter={this.props.onSetFilter}/> 
             </div>
         )

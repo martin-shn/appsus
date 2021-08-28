@@ -2,10 +2,10 @@ const { Link } = ReactRouterDOM
 
 export function BookPreview({book}) {
     return (
-        <Link to={`/book/${book.id}`}>
+        <Link className="clear-link" to={`/book/${book.id}`}>
             <div className='book-preview'>
-                <label>{book.title}</label>
-                {book.listPrice.amount>0&&<label className='price'>
+                <label className="clear-link">{book.title}</label>
+                {book.listPrice.amount>0&&<label className='price clear-link'>
                     {book.listPrice.amount} {getSymbol(book.listPrice.currencyCode)}
                 </label>}
                 <img src={book.thumbnail} />
