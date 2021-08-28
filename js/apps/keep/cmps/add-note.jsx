@@ -126,9 +126,9 @@ export class AddNote extends React.Component {
                 {this.state.type && (
                     <div className='add-note'>
                         <div className="main-title-div">
+                        <button className="close-btn" onClick={this.closeAddNote}></button>
                         <h2 className="main-title">New Note</h2>
                         </div>
-                        <button onClick={this.closeAddNote}>Discard</button>
                         <button onClick={this.saveNote}>Save</button>
                         <input
                             type='text'
