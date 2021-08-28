@@ -32,8 +32,8 @@ export class NoteFilter extends React.Component {
         return (
             <div className="sides-filter-background">
                 <form className='filter-form' onSubmit={this.onSubmit}>
-                    <label htmlFor='filter-text'>Filter:</label>
-                    <input type='search' id='filter-text' value={this.state.text} onChange={this.handleChange} autoComplete="off" />
+                    {/* <label htmlFor='filter-text'>Filter:</label> */}
+                    <input type='search' id='filter-text' placeholder="Search note" value={this.state.text} onChange={this.handleChange} autoComplete="off" />
                     <div className='filter-type-btns'>
                         <input type="radio" name="filter" id='note-txt' title='Text' onClick={this.onBtn} />
                         <input type="radio" name="filter" id='note-img' title='Image' onClick={this.onBtn} />

@@ -35,10 +35,10 @@ export class BookFilter extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <button onClick={this.onToggleFilter}>Add Filter</button>
+                <button className="book-filter-btn" onClick={this.onToggleFilter}></button>
                 {this.state.isShowFilter &&
 
-                    <form className="filter-form" onSubmit={this.onFilter}>
+                    <form className="book-filter-form" onSubmit={this.onFilter}>
                         <label htmlFor='filterName'>Title: </label>
                         <input id='filterName' name='filterName' type='search' placeholder="Book Title" value={this.state.filterName} onChange={this.handleChange} />
                         <label htmlFor='minPrice'>Min price: </label>

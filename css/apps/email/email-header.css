@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     height: 47px;
-    width: 770px;
+    width: 80%;
     margin: auto;
     border-radius: 15px;
 }
@@ -27,9 +27,11 @@
     font-size: 1.3rem;
 }
 
-.email-header .logo {
-    width: 25px;
-    margin-right: 10px;
+.email-home-link::after {
+    font-family: Icons;
+    content: '\f0e0';
+    color: rebeccapurple;
+    margin-left: 2.5rem;
 }
 
 .search-input {
