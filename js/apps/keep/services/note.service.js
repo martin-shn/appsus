@@ -12,60 +12,202 @@ export const keepService = {
 
 const notes = [
     {
-        id: 'n101',
-        type: 'note-txt',
-        isPinned: true,
-        info: {
-            txt: 'Fullstack Me Baby!',
-            title: 'tets',
+        "id": "n101",
+        "type": "note-txt",
+        "isPinned": true,
+        "style": {
+            "backgroundColor": "#FFC6FF"
         },
+        "info": {
+            "title": "tets",
+            "txt": "Fullstack Me Baby!"
+        }
     },
     {
-        id: 'n102',
-        type: 'note-img',
-        info: {
-            url: 'http://some-img/me',
-            title: 'Bobi and Me',
+        "id": "n102",
+        "type": "note-img",
+        "style": {
+            "backgroundColor": "#FFFFFC"
         },
-        style: {
-            backgroundColor: '#00d',
-        },
+        "info": {
+            "title": "Bobi and Me"
+        }
     },
     {
-        id: 'n103',
-        type: 'note-todos',
-        info: {
-            label: 'Get my stuff together',
-            todos: [
-                { txt: 'Driving liscence', doneAt: null, id: 'us34g' },
-                { txt: 'Coding power', doneAt: 187111111, id: '4gfds' },
-            ],
+        "id": "n103",
+        "type": "note-todos",
+        "style": {
+            "backgroundColor": "#CAFFBF"
         },
+        "info": {
+            "label": "Get my stuff together",
+            "todos": [
+                {
+                    "txt": "Driving liscence",
+                    "doneAt": null,
+                    "id": "us34g"
+                },
+                {
+                    "txt": "Coding power",
+                    "doneAt": 187111111,
+                    "id": "4gfds"
+                }
+            ]
+        }
     },
     {
-        id: 'n104',
-        type: 'note-video',
-        info: {
-            title: 'Some video',
-            src: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
-        },
+        "id": "n104",
+        "type": "note-video",
+        "info": {
+            "title": "Some video",
+            "src": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+        }
     },
     {
-        id: 'n105',
-        type: 'note-video',
-        info: {
-            title: 'Youtube video',
-            src: 'https://www.youtube.com/embed/IdqRXjCpFJk',
+        "id": "n105",
+        "type": "note-video",
+        "style": {
+            "backgroundColor": "#FDFFB6"
         },
+        "info": {
+            "title": "Youtube video",
+            "src": "https://www.youtube.com/embed/IdqRXjCpFJk"
+        }
     },
     {
-        id: 'n106',
-        type: 'note-audio',
-        info: {
-            title: 'Lets hear audio',
-            src: 'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav',
-        },
+        "id": "n106",
+        "type": "note-audio",
+        "info": {
+            "title": "Lets hear audio",
+            "src": "https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav"
+        }
     },
+    {
+        "id": "n101",
+        "type": "note-txt",
+        "isPinned": true,
+        "info": {
+            "txt": "Fullstack Me Baby!",
+            "title": "tets"
+        }
+    },
+    {
+        "id": "n102",
+        "type": "note-img",
+        "info": {
+            "url": "http://some-img/me",
+            "title": "Bobi and Me"
+        },
+        "style": {
+            "backgroundColor": "#00d"
+        }
+    },
+    {
+        "id": "n103",
+        "type": "note-todos",
+        "info": {
+            "label": "Get my stuff together",
+            "todos": [
+                {
+                    "txt": "Driving liscence",
+                    "doneAt": null,
+                    "id": "us34g"
+                },
+                {
+                    "txt": "Coding power",
+                    "doneAt": 187111111,
+                    "id": "4gfds"
+                }
+            ]
+        }
+    },
+    {
+        "id": "n104",
+        "type": "note-video",
+        "info": {
+            "title": "Some video",
+            "src": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+        }
+    },
+    {
+        "id": "n105",
+        "type": "note-video",
+        "info": {
+            "title": "Youtube video",
+            "src": "https://www.youtube.com/embed/IdqRXjCpFJk"
+        }
+    },
+    {
+        "id": "n106",
+        "type": "note-audio",
+        "info": {
+            "title": "Lets hear audio",
+            "src": "https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav"
+        }
+    },
+    {
+        "id": "n101",
+        "type": "note-txt",
+        "isPinned": true,
+        "info": {
+            "txt": "Fullstack Me Baby!",
+            "title": "tets"
+        }
+    },
+    {
+        "id": "n102",
+        "type": "note-img",
+        "info": {
+            "url": "http://some-img/me",
+            "title": "Bobi and Me"
+        },
+        "style": {
+            "backgroundColor": "#00d"
+        }
+    },
+    {
+        "id": "n103",
+        "type": "note-todos",
+        "info": {
+            "label": "Get my stuff together",
+            "todos": [
+                {
+                    "txt": "Driving liscence",
+                    "doneAt": null,
+                    "id": "us34g"
+                },
+                {
+                    "txt": "Coding power",
+                    "doneAt": 187111111,
+                    "id": "4gfds"
+                }
+            ]
+        }
+    },
+    {
+        "id": "n104",
+        "type": "note-video",
+        "info": {
+            "title": "Some video",
+            "src": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+        }
+    },
+    {
+        "id": "n105",
+        "type": "note-video",
+        "info": {
+            "title": "Youtube video",
+            "src": "https://www.youtube.com/embed/IdqRXjCpFJk"
+        }
+    },
+    {
+        "id": "n106",
+        "type": "note-audio",
+        "info": {
+            "title": "Lets hear audio",
+            "src": "https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav"
+        }
+    }
 ];
 
 let gNotes;
