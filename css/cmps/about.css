@@ -18,11 +18,11 @@
 }
 .about img {
     width: 150px;
+    height: 150px;
     border-radius: 50%;
 }
 
 .shaul {
-    transform: rotateX(45deg);
     width: 170px;
     border-radius: 50%;
 }
