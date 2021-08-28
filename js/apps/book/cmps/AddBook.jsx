@@ -47,8 +47,8 @@ export class AddBook extends React.Component {
         return (
             <section className='google-search'>
                 <form className="add-book" onSubmit={this.OnSearch}>
-                    <label htmlFor='search'>Search:</label>
-                    <input className='search-input' type='search' id='search' value={this.state.query} onChange={this.handleChange} />
+                    {/* <label htmlFor='search'>Search:</label> */}
+                    <input className='search-input' type='search' placeholder="Search book" id='search' value={this.state.query} onChange={this.handleChange} />
                     <button>Search</button>
                 </form>
                 {this.state.data && (

@@ -123,6 +123,7 @@
 .email-list table .remove-email-btn::before{
     font-family: Icons;
     content: '\f1f8';
+    margin-right: 50px;
 }
 
 .email-list .InListEmailPreview{
