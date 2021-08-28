@@ -18,8 +18,15 @@
     /* width: 100%; */
 }
 
+.google-search form button:hover{
+    text-shadow: 0 0 3px #333;
+}
 .google-search form button{
     grid-area: btn;
+    background: #fcc83b;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 0 3px #333;
 }
 
 .google-search form{
@@ -42,6 +49,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0;
+    
 }
 
 .google-search .search-results{

@@ -83,6 +83,9 @@
     margin-right: 5px;
     height: 1.5rem;
 }
+.email-list [colspan='6'] button:first-of-type{
+    margin-right:100%;
+}
 
 .remove-email-btn {
     border: none;
