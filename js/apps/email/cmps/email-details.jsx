@@ -50,12 +50,28 @@ export class EmailDetails extends React.Component {
     };
 
     onDelete = () => {
-        emailsService.removeEmail(this.state.email.id).then(() => this.props.history.push('/mail/inbox'));
+        emailsService.removeEmail(this.state.email.id).then(() => this.props.history.push('/email/inbox'));
     };
 
     onMark = () => {
         emailsService.onToggleRead(this.state.email.id);
     };
+
+    onUndelete = () =>{
+        emailsService.onUndelete(this.state.email.id)
+    }
+
+    // onSend = () => {
+    //     let email = this.state.email;
+    //     // let email = JSON.parse(JSON.stringify(this.state.email));
+    //     email.to = this.state.to;
+    //     email.from = this.state.from;
+    //     email.subject = this.state.subject;
+    //     email.body = this.state.body;
+    //     email.sentAt=Date.now();
+    //     email.folder='sent';
+    //     emailsService.updateEmail(email).then(()=>this.onBack());
+    // };
 
     render() {
         const { email } = this.state;
@@ -63,7 +79,8 @@ export class EmailDetails extends React.Component {
         email.isRead = true;
         return (
             <React.Fragment>
-                <ToolBar onBack={this.onBack} onReply={this.onReply} onForward={this.onForward} onDelete={this.onDelete} onMark={this.onMark} />
+                {email.folder==='deleted'&&<ToolBar onBack={this.onBack} onReply={this.onReply} onForward={this.onForward} onDelete={this.onDelete} onMark={this.onMark} onUndelete={this.onUndelete}/>}
+                {email.folder!=='deleted'&&<ToolBar onBack={this.onBack} onReply={this.onReply} onForward={this.onForward} onDelete={this.onDelete} onMark={this.onMark} />}
                 <table className='email-details'>
                     <thead>
                         <tr>

@@ -1,17 +1,33 @@
 import { ToolBar } from './toolbar.jsx';
 
-export function InListEmailPreview({ email, onOpenFull, onReply, onForward, onDelete }) {
+export function InListEmailPreview({ email, onOpenFull, onReply, onForward, onDelete, onUndelete, onSend }) {
     return (
         <React.Fragment>
             <tr>
                 <td colSpan='6'>
-                    <ToolBar
+                    {email.folder==='deleted'&&<ToolBar
                         // isIconsOnly='true'
                         onReply={()=> onReply(email.id)}
                         onForward={()=>onForward(email.id)}
                         onDelete={()=>onDelete()}
                         onOpen={() => onOpenFull(email.id)}
-                    />
+                        onUndelete={() => onUndelete(email.id)}
+                    />}
+                    {email.folder!=='deleted'&&email.folder!=='drafts'&&<ToolBar
+                        // isIconsOnly='true'
+                        onReply={()=> onReply(email.id)}
+                        onForward={()=>onForward(email.id)}
+                        onDelete={()=>onDelete()}
+                        onOpen={() => onOpenFull(email.id)}
+                    />}
+                    {email.folder!=='deleted'&&email.folder==='drafts'&&<ToolBar
+                        // isIconsOnly='true'
+                        onSend={()=> onSend(email)}
+                        onReply={()=> onReply(email.id)}
+                        onForward={()=>onForward(email.id)}
+                        onDelete={()=>onDelete()}
+                        onOpen={() => onOpenFull(email.id)}
+                    />}
                 </td>
             </tr>
             <tr>

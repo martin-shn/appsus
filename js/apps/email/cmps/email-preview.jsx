@@ -5,7 +5,6 @@ import { ToolBar } from './toolbar.jsx';
 export class EmailPreview extends React.Component {
     state = {
         email: this.props.email,
-        idx: this.props.idx,
         onSelectEmail: this.props.onSelectEmail,
         reload: this.props.reload,
         folder: this.props.folder,
@@ -14,12 +13,14 @@ export class EmailPreview extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps !== this.props) {
-            this.setState({ folder: this.props.folder });
+            this.setState({ folder: this.props.folder, email:this.props.email });
         }
     }
 
     onRemoveMail = (reload, emailId) => {
-        emailsService.removeEmail(emailId).then(() => reload());
+        this.state.isPreview=false;
+        if(this.state.folder==='deleted') emailsService.purgeEmail(emailId).then(()=>reload())
+        else emailsService.removeEmail(emailId).then(() => reload());
     };
 
     onReadClick = (emailId, reload) => {
@@ -35,16 +36,28 @@ export class EmailPreview extends React.Component {
         this.props.onOpenFull(emailId);
     };
 
+    onUndelete=(emailId)=>{
+        this.state.isPreview=false;
+        emailsService.onUndelete(emailId).then(()=>this.state.reload());
+    }
+
     onReply = (emailId) => {
+        this.state.isPreview=false;
         this.props.onReply(emailId);
     };
 
     onForward = (emailId) => {
+        this.state.isPreview=false;
         this.props.onForward(emailId);
     };
 
+    onSend = (email) => {
+        this.state.isPreview=false;
+        this.props.onSend(email);
+    };
+
     render() {
-        const { email, idx, onSelectEmail, reload, folder } = this.state;
+        const { email, onSelectEmail, reload, folder } = this.state;
 
         // console.log(folder,'===?===',email.folder);
         if (folder && folder !== 'starred' && folder !== email.folder) return <React.Fragment></React.Fragment>;
@@ -56,7 +69,8 @@ export class EmailPreview extends React.Component {
                         <input type='checkbox'></input>
                     </td>
                     <td className={`isStarred ${email.isStarred ? 'starred' : ''}`} onClick={() => this.onStarredClick(email.id, reload, email)}></td>
-                    <td className={`isRead ${email.isRead ? 'read' : ''}`} onClick={() => this.onReadClick(email.id, reload)}></td>
+                    {folder==='sent'&&<td></td>}
+                    {folder!=='sent'&&<td className={`isRead ${email.isRead ? 'read' : ''}`} onClick={() => this.onReadClick(email.id, reload)}></td>}
                     <td
                         className={`from logo-txt ${!email.isRead && 'un-read'}`}
                         onClick={() => {
@@ -64,13 +78,14 @@ export class EmailPreview extends React.Component {
                             this.setState({ isPreview: !this.state.isPreview });
                         }}
                         onDoubleClick={() => this.onOpenFull(email.id)}
-                    >{`${email.from}`}</td>
+                    >{`${folder==='sent'||folder==='drafts'?email.to:email.from}`}</td>
                     <td
                         className={`subject logo-txt ${!email.isRead && 'un-read'}`}
                         onClick={() => {
                             if (!email.isRead) emailsService.onToggleRead(email.id);
                             this.setState({ isPreview: !this.state.isPreview });
                         }}
+                        onDoubleClick={() => this.onOpenFull(email.id)}
                     >{`${email.subject}`}</td>
                     <td>
                         <button className='remove-email-btn' onClick={() => this.onRemoveMail(reload, email.id)}></button>
@@ -83,6 +98,8 @@ export class EmailPreview extends React.Component {
                         onReply={this.onReply}
                         onForward={this.onForward}
                         onDelete={() => this.onRemoveMail(reload, email.id)}
+                        onUndelete={this.onUndelete}
+                        onSend={this.onSend}
                     />
                 )}
             </React.Fragment>

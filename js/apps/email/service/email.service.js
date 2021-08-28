@@ -1,6 +1,8 @@
 import { storageService } from "../../../services/storage.service.js"
 import { utilService } from '../../../services/util.service.js';
 
+const PURGETIME = 1000*60*60*24*30;
+
 export const emailsService = {
     query,
     getEmailById,
@@ -10,7 +12,10 @@ export const emailsService = {
     // toggleMarkAsUnread,
     getStarredEmails,
     onToggleStarred,
-    getLoggedUser
+    getLoggedUser,
+    onUndelete,
+    purgeEmail,
+    updateEmail,
 }
 
 const emails = [
@@ -21,6 +26,7 @@ const emails = [
         isRead: false,
         isStarred:false,
         folder: 'inbox',
+        removeAt:null,
         sentAt: 1551133930594,
         from: 'Lover',
         to: 'momo@gmail.com'
@@ -32,6 +38,7 @@ const emails = [
         isRead: false,
         isStarred:true,
         folder: 'inbox',
+        removeAt: null,
         sentAt: 1551133930594,
         from: 'Best Buy',
         to: 'momo@momo.com'
@@ -69,7 +76,7 @@ const emails = [
         folder: 'sent',
         sentAt: 1551133930594,
         removeAt: null,
-        from: 'Nike',
+        from: 'mahatmagandi@appsus.com',
         to: 'momo@gmail.com'
     },
     {
@@ -106,7 +113,10 @@ function query(filterInput) {
                 
         );
         return Promise.resolve(filteredEmails);
-    } else return Promise.resolve(gEmails);
+    } else {
+        _loadEmails();
+        return Promise.resolve(gEmails);
+    }
 }
 
 function getLoggedUser(){
@@ -127,7 +137,7 @@ function getEmailById(emailId) {
 
 function addEmail(email) {
     email.id=utilService.makeId()
-    email.isRead= false;
+    email.isRead= true;
     email.isStarred=false;
     if(!email.folder) email.folder= 'sent';
     email.sentAt= Date.now();
@@ -137,14 +147,38 @@ function addEmail(email) {
     return Promise.resolve()
 }
 
+function updateEmail(email){
+    const id = email.id ? email.id : utilService.makeId()
+    email.id=id
+    email.isRead= true;
+    email.isStarred=false;
+    if(!email.folder) email.folder= 'drafts';
+    if(!email.sentAt) email.sentAt= null;
+    email.removeAt= null;
+    const idx = gEmails.findIndex(email=>email.id===id);
+    if(idx>=0) gEmails.splice(idx,1,email)
+    else gEmails.push(email)
+    _saveEmails()
+    return Promise.resolve(id)
+}
+
+function onUndelete(emailId){
+    const idx = gEmails.findIndex(email=>email.id===emailId);
+    gEmails[idx].removeAt=null
+    gEmails[idx].folder='inbox'
+    _saveEmails()
+    return Promise.resolve()    
+}
+
 function removeEmail(emailId) {
     const idx = gEmails.findIndex(email=>email.id===emailId);
-    gEmails[idx].folder='deleted';
-    gEmails[idx].removeAt=Date.now();
+    gEmails[idx].removeAt=Date.now()
+    gEmails[idx].folder='deleted'
     _saveEmails()
     return Promise.resolve()    
 }   
-function purgeEmails() {
+
+function purgeEmail(emailId) {
     const idx = gEmails.findIndex(email=>email.id===emailId);
     gEmails.splice(idx,1)
     _saveEmails()
@@ -169,12 +203,13 @@ function _loadEmails() {
     gEmails = storageService.loadFromStorage('emailsDB')
     if (!gEmails) {
         gEmails = emails
-        _saveEmails()
     }
-
+    
     gEmails.forEach((email,idx)=>{
-        if(email.removeAt+1000*60*60*24*30>Date.now()) gEmails.splice(idx,1);
+        if (email.removeAt && email.removeAt+1000*60<Date.now()) gEmails.splice(idx,1);
     })
+    
+    _saveEmails()
 }
 
 function _saveEmails() {
