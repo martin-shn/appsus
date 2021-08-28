@@ -18,10 +18,11 @@
 .add-note .main-title-div {
     display: flex;
     height: 45px;
-    width: 100%;
+    width: calc(100% + 30px);
     background-color: #404040;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin: 0 -15px;
 }
 
 .add-note .main-title {
