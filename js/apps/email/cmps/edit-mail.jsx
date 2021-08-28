@@ -14,7 +14,7 @@ export class EditMail extends React.Component {
 
     componentDidMount() {
         const { emailId } = this.props.match.params;
-        this.setState({emailId})
+        this.setState({ emailId });
         const action = new URLSearchParams(this.props.location.search).get('action');
         const father = new URLSearchParams(this.props.location.search).get('father') || 'list';
         emailsService
@@ -71,43 +71,44 @@ export class EditMail extends React.Component {
 
     onSend = () => {
         let email = {};
-        email.id=this.state.emailId;
+        email.id = this.state.emailId;
         email.to = this.state.to;
         email.from = this.state.from;
         email.subject = this.state.subject;
         email.body = this.state.body;
-        email.sentAt=Date.now();
-        email.folder='sent';
-        emailsService.updateEmail(email).then(()=>this.onBack());
+        email.sentAt = Date.now();
+        email.folder = 'sent';
+        emailsService.updateEmail(email).then(() => this.onBack());
     };
 
-    onSave=()=>{
+    onSave = () => {
         let email = {};
-        if(this.state.email.folder==='drafts') email.id=this.state.emailId
-        else email.id=null;
+        if (this.state.email.folder === 'drafts') email.id = this.state.emailId;
+        else email.id = null;
         email.to = this.state.to;
         email.from = this.state.from;
         email.subject = this.state.subject;
         email.body = this.state.body;
-        email.folder='drafts';
-        emailsService.updateEmail(email).then(()=>this.onBack());
-
-    }
+        email.folder = 'drafts';
+        emailsService.updateEmail(email).then(() => this.onBack());
+    };
 
     render() {
         console.log('render:', this.state);
         return (
-            <React.Fragment>
+            <div className='edit-mail'>
                 <ToolBar onSave={this.onSave} onBack={this.onBack} onSend={this.onSend} />
-                <label htmlFor='from'>From:</label>
-                <input id='from' type='text' value={this.state.from} onChange={this.handleChange} />
-                <label htmlFor='to'>To:</label>
-                <input id='to' type='text' value={this.state.to} onChange={this.handleChange} />
-                <label htmlFor='subject:'>Subject:</label>
-                <input id='subject' type='text' value={this.state.subject} onChange={this.handleChange} />
+                <div className='edit-form'>
+                    <label htmlFor='from'>From:</label>
+                    <input id='from' type='text' value={this.state.from} onChange={this.handleChange} />
+                    <label htmlFor='to'>To:</label>
+                    <input id='to' type='text' value={this.state.to} onChange={this.handleChange} />
+                    <label htmlFor='subject:'>Subject:</label>
+                    <input id='subject' type='text' value={this.state.subject} onChange={this.handleChange} />
 
-                <textarea id='body' value={this.state.body} onChange={this.handleChange} />
-            </React.Fragment>
+                    <textarea id='body' value={this.state.body} onChange={this.handleChange} />
+                </div>
+            </div>
         );
     }
 }
