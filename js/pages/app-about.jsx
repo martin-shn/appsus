@@ -27,7 +27,7 @@ export class About extends React.Component {
                   <p>Martin Sh</p>
           </div>                
         <div>
-          <img src="../css/img/shaul.png"></img>
+          <img className="shaul" src="../css/img/shaul.jpg"></img>
           <div className="socials">
                       <a href="linkedin.com/in/shaul-batzon-a65b98169/" target="_blank"></a>
                       <a href="https://www.facebook.com/shaul.batzon" target="_blank"></a>
