@@ -3,6 +3,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-left: 20px;
+    
 }
 
 .book-filter-btn {
@@ -10,6 +12,16 @@
     border: none;
     background-color: inherit;
     color: #606e83;
+}
+
+.book-filter-action {
+    background: #606e83;
+    opacity: .6;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 0 3px #333;
+    margin-left: 5px;
+    margin-right: 20px;
 }
 
 .book-filter-btn::after {
@@ -21,9 +33,18 @@
     width: 100%;
 }
 
-.filter-form input {
-    margin-right: 10px;
-    height: 2rem;
+.book-filter-form input {
+    margin: auto;
+    margin-bottom: 5px;
+    width: 300px;
+    color: #606e83;
+    border: 1px solid rgb(202, 213, 219);
+    border-radius: 20px;
+    background: rgba(241,243,244,0.44);
+    transition: all 100ms ease-in,width 100ms ease-out;
+    transition-duration: 100ms, 100ms;
+    transition-timing-function: ease-in, ease-out;
+    transition-delay: 0s, 0s;
 }
 
 .filter-form input:not(:first-of-type) {

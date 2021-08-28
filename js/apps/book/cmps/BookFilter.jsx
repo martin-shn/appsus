@@ -39,13 +39,10 @@ export class BookFilter extends React.Component {
                 {this.state.isShowFilter &&
 
                     <form className="book-filter-form" onSubmit={this.onFilter}>
-                        <label htmlFor='filterName'>Title: </label>
                         <input id='filterName' name='filterName' type='search' placeholder="Book Title" value={this.state.filterName} onChange={this.handleChange} />
-                        <label htmlFor='minPrice'>Min price: </label>
                         <input id='minPrice' name='minPrice' type='number' placeholder="Min Price" value={this.state.minPrice} onChange={(ev) => (this.minPrice = ev.target.value)} />
-                        <label htmlFor='maxPrice'>Max price: </label>
                         <input id='maxPrice' name='maxPrice' type='number' placeholder="Max Price" value={this.state.maxPrice} onChange={(ev) => (this.maxPrice = ev.target.value)} />
-                        <button>Filter</button>
+                        <button className="book-filter-action">Filter</button>
                     </form>
                 }
             </React.Fragment>);
