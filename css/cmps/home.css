@@ -32,8 +32,10 @@
         font-family: Icons;
         content: '\f00d';
         color: whitesmoke;
+        position: fixed;
     }
     .hamburger.closed::before {
+        position: absolute;
         font-family: Icons;
         content: '\f0c9';
         color: whitesmoke;
